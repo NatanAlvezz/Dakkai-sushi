@@ -2,39 +2,62 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#080808">
-  <title>Dakkai Sistema | Acesso Administrativo</title>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta name="theme-color" content="#050505">
+
+  <title>Dakkai Sushi | Acesso Administrativo</title>
+
   <style>
     :root {
-      --vermelho: #b40b12;
-      --vermelho-claro: #e01b24;
-      --dourado: #d4aa60;
-      --dourado-claro: #f0cf8b;
+      --vermelho: #b50b13;
+      --vermelho-claro: #df2029;
+      --dourado: #daa744;
+      --dourado-claro: #f1ce83;
       --branco: #ffffff;
-      --cinza: #b9b9b9;
-      --borda: rgba(255, 255, 255, 0.12);
+      --cinza: rgba(255, 255, 255, 0.64);
+      --borda: rgba(255, 255, 255, 0.18);
+      --fundo-card: rgba(8, 8, 8, 0.78);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    html, body { width: 100%; min-height: 100%; }
+    html {
+      width: 100%;
+      min-height: 100%;
+      background: #050505;
+    }
 
     body {
+      width: 100%;
       min-height: 100vh;
       min-height: 100dvh;
-      position: relative;
       overflow-x: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 28px 20px;
-      font-family: Inter, Montserrat, Arial, Helvetica, sans-serif;
       color: var(--branco);
+      font-family: Arial, Helvetica, sans-serif;
       background:
-        linear-gradient(90deg, rgba(0,0,0,.93) 0%, rgba(0,0,0,.76) 46%, rgba(0,0,0,.42) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.86)),
-        url("https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=2000&q=90");
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.26) 0%,
+          rgba(0, 0, 0, 0.48) 48%,
+          rgba(0, 0, 0, 0.82) 100%
+        ),
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.52),
+          rgba(0, 0, 0, 0.12),
+          rgba(0, 0, 0, 0.48)
+        ),
+        url("https://images.unsplash.com/photo-1579027989536-b7b1f875659b?auto=format&fit=crop&w=2200&q=92");
+
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -45,853 +68,1035 @@
       content: "";
       position: fixed;
       inset: 0;
+      z-index: 0;
       pointer-events: none;
+
       background:
-        radial-gradient(circle at 72% 38%, rgba(180,11,18,.19), transparent 33%),
-        radial-gradient(circle at 22% 62%, rgba(212,170,96,.10), transparent 30%);
-      animation: backgroundBreath 8s ease-in-out infinite alternate;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .24;
-      background-image:
-        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-      background-size: 46px 46px;
-      mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
-    }
-
-    @keyframes backgroundBreath {
-      from { transform: scale(1); opacity: .82; }
-      to { transform: scale(1.06); opacity: 1; }
-    }
-
-    .floating-particle {
-      position: fixed;
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: .25;
-      filter: blur(.4px);
-      animation: floatUp linear infinite;
-    }
-
-    .particle-1 { width: 7px; height: 7px; left: 8%; bottom: -20px; background: var(--dourado); animation-duration: 13s; }
-    .particle-2 { width: 5px; height: 5px; left: 28%; bottom: -20px; background: var(--vermelho-claro); animation-duration: 17s; animation-delay: 2s; }
-    .particle-3 { width: 8px; height: 8px; right: 16%; bottom: -20px; background: var(--dourado-claro); animation-duration: 19s; animation-delay: 5s; }
-    .particle-4 { width: 4px; height: 4px; right: 38%; bottom: -20px; background: #fff; animation-duration: 15s; animation-delay: 1s; }
-
-    @keyframes floatUp {
-      0% { transform: translate3d(0,0,0) scale(.8); opacity: 0; }
-      12% { opacity: .28; }
-      70% { opacity: .18; }
-      100% { transform: translate3d(35px,-110vh,0) scale(1.4); opacity: 0; }
+        radial-gradient(
+          circle at 50% 17%,
+          rgba(190, 12, 20, 0.18),
+          transparent 25%
+        ),
+        radial-gradient(
+          circle at 84% 65%,
+          rgba(190, 12, 20, 0.12),
+          transparent 26%
+        ),
+        radial-gradient(
+          circle at 20% 65%,
+          rgba(218, 167, 68, 0.07),
+          transparent 28%
+        );
     }
 
     .page {
-      width: min(1160px, 100%);
-      min-height: 610px;
       position: relative;
       z-index: 2;
-      display: grid;
-      grid-template-columns: minmax(0,1.18fr) 390px;
-      align-items: center;
-      gap: 82px;
-    }
-
-    .presentation { max-width: 640px; padding: 24px 0; }
-
-    .presentation-top {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 26px;
-      text-align: center;
-    }
-
-    .dakkai-vector-logo {
-      overflow: visible;
-      shape-rendering: geometricPrecision;
-      text-rendering: geometricPrecision;
-    }
-
-    .presentation-logo {
-      width: 150px;
-      height: 96px;
-      flex: 0 0 auto;
-      object-fit: contain;
-      image-rendering: auto;
-      transform-origin: center;
-      filter:
-        drop-shadow(0 13px 24px rgba(0,0,0,.68))
-        drop-shadow(0 0 14px rgba(212,170,96,.18));
-      animation: logoFloat 4.2s ease-in-out infinite;
-    }
-
-    @keyframes logoFloat {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-9px) scale(1.025); }
-    }
-
-    .presentation-brand {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .brand-line {
-      display: inline-flex;
-      align-items: center;
-      gap: 11px;
-      color: var(--dourado);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 3.4px;
-      text-transform: uppercase;
-    }
-
-    .brand-line::before,
-    .brand-line::after {
-      content: "";
-      width: 28px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--dourado));
-    }
-
-    .brand-line::after {
-      transform: scaleX(-1);
-    }
-
-    .brand-subline { color: rgba(255,255,255,.56); font-size: 12px; letter-spacing: .7px; }
-
-    .presentation h2 {
-      max-width: 610px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(40px, 5vw, 68px);
-      font-weight: 400;
-      line-height: 1.04;
-      letter-spacing: -2px;
-      text-shadow: 0 12px 38px rgba(0,0,0,.75);
-    }
-
-    .presentation h2 strong { display: block; color: var(--dourado); font-weight: 400; }
-
-    .presentation-text {
-      max-width: 530px;
-      margin: 22px auto 0;
-      text-align: center;
-      color: rgba(255,255,255,.74);
-      font-size: 15px;
-      line-height: 1.75;
-    }
-
-    .motivation-card {
-      max-width: 540px;
-      margin-left: auto;
-      margin-right: auto;
-      min-height: 128px;
-      margin-top: 30px;
-      padding: 22px 24px 20px 26px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(212,170,96,.22);
-      border-radius: 18px;
-      background: linear-gradient(135deg, rgba(255,255,255,.075), rgba(255,255,255,.025)), rgba(6,6,6,.48);
-      box-shadow: 0 18px 55px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.07);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-    }
-
-    .motivation-card::before {
-      content: "“";
-      position: absolute;
-      top: -24px;
-      left: 14px;
-      color: rgba(212,170,96,.12);
-      font-family: Georgia, serif;
-      font-size: 112px;
-      line-height: 1;
-    }
-
-    .motivation-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,.05) 48%, transparent 74%);
-      transform: translateX(-130%);
-      animation: shine 7s ease-in-out infinite;
-    }
-
-    @keyframes shine {
-      0%, 56% { transform: translateX(-130%); }
-      76%, 100% { transform: translateX(130%); }
-    }
-
-    .motivation-label {
-      position: relative;
-      z-index: 1;
-      margin-bottom: 11px;
-      color: var(--dourado);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-    }
-
-    .motivation-text {
-      position: relative;
-      z-index: 1;
-      min-height: 50px;
-      display: flex;
-      align-items: center;
-      color: rgba(255,255,255,.94);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(18px,2vw,23px);
-      line-height: 1.42;
-      text-shadow: 0 4px 18px rgba(0,0,0,.45);
-      transition: opacity .42s ease, transform .42s ease, filter .42s ease;
-    }
-
-    .motivation-text.is-changing { opacity: 0; transform: translateY(9px); filter: blur(4px); }
-
-    .motivation-progress {
       width: 100%;
-      height: 2px;
-      margin-top: 16px;
-      overflow: hidden;
-      border-radius: 99px;
-      background: rgba(255,255,255,.08);
-    }
+      min-height: 100vh;
+      min-height: 100dvh;
 
-    .motivation-progress span {
-      display: block;
-      width: 0;
-      height: 100%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--vermelho-claro), var(--dourado-claro));
-      box-shadow: 0 0 13px rgba(212,170,96,.4);
-    }
-
-    @keyframes progress { from { width: 0; } to { width: 100%; } }
-
-    .quality-list {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 13px 23px;
-      margin-top: 25px;
-    }
-
-    .quality-item {
-      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 9px;
-      color: rgba(255,255,255,.8);
-      font-size: 12px;
-      font-weight: 650;
+      justify-content: flex-start;
+
+      padding:
+        max(24px, env(safe-area-inset-top))
+        18px
+        max(28px, env(safe-area-inset-bottom));
     }
 
-    .quality-item span {
-      width: 7px;
-      height: 7px;
-      display: block;
+    .particles {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      bottom: -30px;
       border-radius: 50%;
+      background: var(--dourado);
+      box-shadow: 0 0 12px rgba(218, 167, 68, 0.55);
+      opacity: 0;
+      animation: subir linear infinite;
+    }
+
+    .particle:nth-child(1) {
+      left: 8%;
+      width: 4px;
+      height: 4px;
+      animation-duration: 13s;
+    }
+
+    .particle:nth-child(2) {
+      left: 21%;
+      width: 6px;
+      height: 6px;
+      animation-duration: 17s;
+      animation-delay: 2s;
+    }
+
+    .particle:nth-child(3) {
+      left: 38%;
+      width: 3px;
+      height: 3px;
+      animation-duration: 15s;
+      animation-delay: 5s;
+    }
+
+    .particle:nth-child(4) {
+      right: 32%;
+      width: 5px;
+      height: 5px;
       background: var(--vermelho-claro);
-      box-shadow: 0 0 14px rgba(224,27,36,.88);
+      animation-duration: 18s;
+      animation-delay: 1s;
+    }
+
+    .particle:nth-child(5) {
+      right: 18%;
+      width: 4px;
+      height: 4px;
+      animation-duration: 14s;
+      animation-delay: 4s;
+    }
+
+    .particle:nth-child(6) {
+      right: 7%;
+      width: 6px;
+      height: 6px;
+      animation-duration: 20s;
+      animation-delay: 7s;
+    }
+
+    @keyframes subir {
+      0% {
+        transform: translate3d(0, 0, 0) scale(0.7);
+        opacity: 0;
+      }
+
+      12% {
+        opacity: 0.72;
+      }
+
+      75% {
+        opacity: 0.28;
+      }
+
+      100% {
+        transform: translate3d(35px, -115vh, 0) scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    .brand {
+      width: min(630px, 95%);
+      margin: 4px auto 24px;
+      text-align: center;
+    }
+
+    .brand-logo {
+      display: block;
+      width: min(500px, 92%);
+      max-height: 360px;
+      margin: 0 auto;
+      object-fit: contain;
+      object-position: center;
+      border-radius: 22px;
+
+      filter:
+        drop-shadow(0 20px 38px rgba(0, 0, 0, 0.82))
+        drop-shadow(0 0 18px rgba(181, 11, 19, 0.2));
+
+      animation: flutuarLogo 4.6s ease-in-out infinite;
+    }
+
+    @keyframes flutuarLogo {
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-10px) scale(1.012);
+      }
     }
 
     .login-card {
-      width: 100%;
-      max-width: 390px;
-      justify-self: end;
       position: relative;
-      padding: 23px 28px 22px;
+      width: min(525px, 100%);
       overflow: hidden;
+
+      padding: 36px 41px 30px;
+
       border: 1px solid var(--borda);
-      border-radius: 22px;
-      background: linear-gradient(145deg, rgba(22,22,22,.93), rgba(6,6,6,.88));
-      box-shadow: 0 35px 100px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.07);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(18, 14, 11, 0.86),
+          rgba(5, 5, 5, 0.89)
+        );
+
+      box-shadow:
+        0 38px 100px rgba(0, 0, 0, 0.76),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
     }
 
     .login-card::before {
       content: "";
       position: absolute;
       top: 0;
-      left: 45px;
-      right: 45px;
+      left: 70px;
+      right: 70px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--dourado), transparent);
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(218, 167, 68, 0.9),
+          transparent
+        );
     }
 
     .login-card::after {
       content: "";
       position: absolute;
-      width: 210px;
-      height: 210px;
-      top: -120px;
-      right: -95px;
+      top: -130px;
+      right: -110px;
+
+      width: 260px;
+      height: 260px;
+
       border-radius: 50%;
-      background: rgba(180,11,18,.16);
-      filter: blur(10px);
-    }
 
-    .login-heading {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 18px;
-      text-align: center;
-    }
+      background: rgba(181, 11, 19, 0.14);
+      filter: blur(18px);
 
-    .logo-wrapper {
-      width: 92px;
-      height: 70px;
-      flex: 0 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 0;
-      border-radius: 18px;
-      background: transparent;
-      box-shadow: none;
-      animation: logoFloat 4.2s ease-in-out infinite;
-    }
-
-    .logo {
-      display: block;
-      width: 88px;
-      height: 64px;
-      object-fit: contain;
-      image-rendering: auto;
-      filter:
-        drop-shadow(0 11px 20px rgba(0,0,0,.68))
-        drop-shadow(0 0 12px rgba(212,170,96,.16));
-    }
-
-    .login-title { min-width: 0; text-align: center; }
-
-    .mobile-motivation {
-      display: none;
-      position: relative;
-      z-index: 1;
-      margin: 0 0 16px;
-      padding: 13px 15px 12px;
-      border: 1px solid rgba(212,170,96,.2);
-      border-radius: 13px;
-      background: rgba(255,255,255,.045);
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .mobile-motivation-label {
-      display: block;
-      margin-bottom: 7px;
-      color: var(--dourado);
-      font-size: 9px;
-      font-weight: 800;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-    }
-
-    .mobile-motivation p {
-      min-height: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,.9);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 14px;
-      line-height: 1.35;
-      transition: opacity .35s ease, transform .35s ease;
-    }
-
-    .mobile-motivation p.is-changing {
-      opacity: 0;
-      transform: translateY(6px);
-    }
-
-    .mobile-motivation-progress {
-      height: 2px;
-      margin-top: 9px;
-      border-radius: 99px;
-      overflow: hidden;
-      background: rgba(255,255,255,.08);
-    }
-
-    .mobile-motivation-progress span {
-      display: block;
-      width: 0;
-      height: 100%;
-      background: linear-gradient(90deg, var(--vermelho-claro), var(--dourado-claro));
-    }
-
-    .login-title h1 {
-      margin-bottom: 4px;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 25px;
-      font-weight: 400;
-      letter-spacing: .1px;
-    }
-
-    .subtitle { color: var(--cinza); font-size: 12px; line-height: 1.35; letter-spacing: .35px; }
-
-    .form-group { position: relative; z-index: 1; margin-bottom: 12px; }
-
-    .form-group label {
-      display: block;
-      margin: 0 0 8px 3px;
-      color: rgba(255,255,255,.72);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: .8px;
-      text-transform: uppercase;
-    }
-
-    .input-area { position: relative; }
-
-    .input-icon {
-      position: absolute;
-      top: 50%;
-      left: 16px;
-      transform: translateY(-50%);
-      color: rgba(255,255,255,.42);
-      font-size: 16px;
       pointer-events: none;
     }
 
-    input {
-      width: 100%;
-      height: 48px;
-      padding: 0 48px 0 47px;
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 12px;
-      outline: none;
-      color: var(--branco);
-      background: rgba(255,255,255,.055);
-      font-size: 14px;
-      transition: border-color .25s ease, background .25s ease, box-shadow .25s ease, transform .25s ease;
+    .login-header {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      margin-bottom: 29px;
     }
 
-    input::placeholder { color: rgba(255,255,255,.34); }
+    .login-header h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(31px, 5vw, 39px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.7px;
+    }
 
-    input:focus {
+    .login-header h1 span {
+      color: var(--dourado);
+    }
+
+    .title-line {
+      width: 57px;
+      height: 3px;
+      margin: 17px auto 18px;
+      border-radius: 999px;
+      background: var(--vermelho-claro);
+      box-shadow: 0 0 15px rgba(223, 32, 41, 0.48);
+    }
+
+    .login-header p {
+      max-width: 340px;
+      margin: auto;
+
+      color: rgba(255, 255, 255, 0.62);
+
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .form-group {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 18px;
+    }
+
+    .input-box {
+      position: relative;
+      min-height: 94px;
+
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 14px;
+
+      background: rgba(0, 0, 0, 0.25);
+
+      transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .input-box:focus-within {
       transform: translateY(-1px);
-      border-color: rgba(212,170,96,.72);
-      background: rgba(255,255,255,.075);
-      box-shadow: 0 0 0 4px rgba(212,170,96,.08), 0 10px 25px rgba(0,0,0,.2);
+
+      border-color: rgba(218, 167, 68, 0.75);
+
+      background: rgba(0, 0, 0, 0.39);
+
+      box-shadow:
+        0 0 0 4px rgba(218, 167, 68, 0.08),
+        0 15px 35px rgba(0, 0, 0, 0.28);
+    }
+
+    .input-label {
+      position: absolute;
+      top: 17px;
+      left: 54px;
+
+      color: var(--dourado);
+
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .input-icon {
+      position: absolute;
+      top: 16px;
+      left: 19px;
+
+      color: rgba(255, 255, 255, 0.9);
+
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .input-box input {
+      position: absolute;
+      left: 21px;
+      right: 53px;
+      bottom: 8px;
+
+      width: calc(100% - 74px);
+      height: 47px;
+
+      border: 0;
+      outline: 0;
+
+      color: var(--branco);
+      background: transparent;
+
+      font-size: 17px;
+    }
+
+    .input-box input::placeholder {
+      color: rgba(255, 255, 255, 0.43);
     }
 
     .toggle-password {
+      position: absolute;
+      right: 10px;
+      bottom: 13px;
+
       width: 42px;
       height: 42px;
-      position: absolute;
-      top: 50%;
-      right: 7px;
-      transform: translateY(-50%);
+
       border: 0;
-      border-radius: 9px;
-      color: rgba(255,255,255,.55);
+      border-radius: 10px;
+
+      color: rgba(255, 255, 255, 0.64);
       background: transparent;
+
+      font-size: 20px;
       cursor: pointer;
-      font-size: 16px;
     }
 
-    .toggle-password:hover { color: var(--branco); background: rgba(255,255,255,.06); }
+    .toggle-password:hover {
+      color: var(--branco);
+      background: rgba(255, 255, 255, 0.06);
+    }
 
     .form-options {
       position: relative;
-      z-index: 1;
+      z-index: 2;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 15px;
-      margin: 3px 1px 16px;
+
+      gap: 16px;
+
+      margin: 4px 1px 23px;
     }
 
     .remember {
       display: flex;
       align-items: center;
-      gap: 9px;
-      color: rgba(255,255,255,.62);
-      font-size: 12px;
+      gap: 10px;
+
+      color: rgba(255, 255, 255, 0.87);
+
+      font-size: 14px;
       cursor: pointer;
     }
 
-    .remember input { width: 15px; height: 15px; padding: 0; accent-color: var(--vermelho); }
+    .remember input {
+      appearance: none;
 
-    .forgot { color: var(--dourado); font-size: 12px; text-decoration: none; }
-    .forgot:hover { text-decoration: underline; }
+      width: 20px;
+      height: 20px;
+
+      display: grid;
+      place-items: center;
+
+      border: 2px solid rgba(255, 255, 255, 0.86);
+      border-radius: 3px;
+
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .remember input:checked {
+      border-color: var(--vermelho-claro);
+      background: var(--vermelho);
+    }
+
+    .remember input:checked::after {
+      content: "✓";
+
+      color: #ffffff;
+
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .forgot {
+      color: var(--dourado);
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .forgot:hover {
+      text-decoration: underline;
+    }
 
     .login-button {
-      width: 100%;
-      height: 49px;
       position: relative;
-      z-index: 1;
+      z-index: 2;
+
+      width: 100%;
+      height: 67px;
+
       overflow: hidden;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 12px;
-      color: var(--branco);
-      background: linear-gradient(135deg, #8f050b, var(--vermelho), #d01720);
-      box-shadow: 0 15px 35px rgba(180,11,18,.30), inset 0 1px 0 rgba(255,255,255,.18);
-      font-size: 13px;
-      font-weight: 850;
-      letter-spacing: 1.3px;
-      text-transform: uppercase;
+      gap: 30px;
+
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 13px;
+
+      color: #ffffff;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ca1a23,
+          #a90811 50%,
+          #c81720
+        );
+
+      box-shadow:
+        0 17px 40px rgba(150, 0, 8, 0.38),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+
       cursor: pointer;
-      transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+
+      transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        box-shadow 0.2s ease;
     }
 
     .login-button::before {
       content: "";
+
       position: absolute;
       inset: 0;
-      background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.18) 50%, transparent 75%);
-      transform: translateX(-130%);
-      transition: transform .65s ease;
-    }
 
-    .login-button:hover::before { transform: translateX(130%); }
+      background:
+        linear-gradient(
+          110deg,
+          transparent 20%,
+          rgba(255, 255, 255, 0.22) 50%,
+          transparent 78%
+        );
+
+      transform: translateX(-130%);
+      transition: transform 0.7s ease;
+    }
 
     .login-button:hover {
       transform: translateY(-2px);
       filter: brightness(1.12);
-      box-shadow: 0 20px 42px rgba(180,11,18,.42), inset 0 1px 0 rgba(255,255,255,.22);
+
+      box-shadow:
+        0 21px 48px rgba(150, 0, 8, 0.53),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
     }
 
-    .login-button:active { transform: translateY(0); }
-    .login-button span { font-size: 18px; font-weight: 400; }
+    .login-button:hover::before {
+      transform: translateX(130%);
+    }
 
-    .security {
+    .login-button:disabled {
+      opacity: 0.66;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .login-button span {
       position: relative;
-      z-index: 1;
+      z-index: 2;
+    }
+
+    .button-arrow {
+      font-size: 28px;
+      font-weight: 300;
+    }
+
+    .admin-divider {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      align-items: center;
+      gap: 18px;
+
+      margin: 35px 0 27px;
+
+      color: rgba(255, 255, 255, 0.43);
+
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .admin-divider::before,
+    .admin-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2)
+        );
+    }
+
+    .admin-divider::after {
+      transform: scaleX(-1);
+    }
+
+    .motivation {
+      position: relative;
+      z-index: 2;
+
+      min-height: 141px;
+      overflow: hidden;
+
+      padding: 24px 24px 20px 64px;
+
+      border: 1px solid rgba(255, 255, 255, 0.19);
+      border-radius: 14px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.035),
+          rgba(0, 0, 0, 0.16)
+        );
+    }
+
+    .quote {
+      position: absolute;
+      top: 17px;
+      left: 19px;
+
+      color: var(--dourado);
+
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 55px;
+      line-height: 1;
+    }
+
+    .motivation-text {
+      min-height: 66px;
+
+      display: flex;
+      align-items: center;
+
+      color: rgba(255, 255, 255, 0.95);
+
+      font-size: 17px;
+      line-height: 1.5;
+
+      transition:
+        opacity 0.4s ease,
+        transform 0.4s ease,
+        filter 0.4s ease;
+    }
+
+    .motivation-text.changing {
+      opacity: 0;
+      transform: translateY(8px);
+      filter: blur(3px);
+    }
+
+    .phrase-progress {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
-      margin-top: 13px;
-      color: rgba(255,255,255,.38);
-      font-size: 10px;
+      gap: 9px;
+
+      margin-top: 15px;
     }
 
-    footer {
+    .phrase-progress span {
+      width: 39px;
+      height: 5px;
+
+      border-radius: 999px;
+
+      background: rgba(255, 255, 255, 0.42);
+
+      transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .phrase-progress span.active {
+      background: var(--vermelho-claro);
+      transform: scaleX(1.08);
+    }
+
+    .status {
       position: relative;
-      z-index: 1;
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255,255,255,.07);
-      color: rgba(255,255,255,.36);
+      z-index: 3;
+
+      display: none;
+
+      margin: 15px 0 0;
+      padding: 12px 15px;
+
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+
+      color: #ffffff;
+      background: rgba(181, 11, 19, 0.9);
+
       text-align: center;
-      font-size: 10px;
-      letter-spacing: .45px;
+      font-size: 13px;
     }
 
-    @media (max-width: 930px) {
-      body { background-position: 62% center; }
-      .page { width: min(500px,100%); min-height: auto; display: block; }
-      .presentation { display: none; }
-      .mobile-motivation { display: block; }
+    .status.show {
+      display: block;
     }
 
-    @media (max-width: 520px) {
-      body {
-        align-items: flex-start;
-        padding: max(20px, env(safe-area-inset-top)) 13px max(20px, env(safe-area-inset-bottom));
-        background:
-          linear-gradient(rgba(0,0,0,.66), rgba(0,0,0,.90)),
-          url("https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1200&q=88");
-        background-size: cover;
-        background-position: center;
-        background-attachment: scroll;
+    .footer {
+      margin-top: 28px;
+
+      color: rgba(255, 255, 255, 0.47);
+
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 0.2px;
+
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    }
+
+    @media (min-width: 900px) {
+      .page {
+        padding-top: 28px;
       }
 
-      .login-card { margin: auto; max-width: 380px; padding: 20px 18px 19px; border-radius: 20px; }
-      .login-heading { gap: 7px; margin-bottom: 17px; }
-      .logo-wrapper { width: 84px; height: 64px; }
-      .logo { width: 80px; height: 58px; }
-      .login-title h1 { font-size: 23px; }
-      .subtitle { font-size: 11px; }
-      input, .login-button { height: 48px; }
-      .form-options { align-items: flex-start; }
+      .brand {
+        margin-bottom: 20px;
+      }
+
+      .brand-logo {
+        width: min(510px, 70vw);
+        max-height: 330px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        background-attachment: scroll;
+        background-position: 58% center;
+      }
+
+      .page {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .brand {
+        width: 100%;
+        margin-bottom: 17px;
+      }
+
+      .brand-logo {
+        width: min(380px, 96%);
+        max-height: 255px;
+        border-radius: 17px;
+      }
+
+      .login-card {
+        padding: 27px 20px 23px;
+        border-radius: 21px;
+      }
+
+      .login-header {
+        margin-bottom: 24px;
+      }
+
+      .login-header h1 {
+        font-size: 30px;
+      }
+
+      .login-header p {
+        font-size: 14px;
+      }
+
+      .input-box {
+        min-height: 86px;
+      }
+
+      .input-box input {
+        font-size: 16px;
+      }
+
+      .form-options {
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .remember,
+      .forgot {
+        font-size: 12px;
+      }
+
+      .login-button {
+        height: 60px;
+        font-size: 17px;
+      }
+
+      .admin-divider {
+        margin: 28px 0 22px;
+        font-size: 12px;
+      }
+
+      .motivation {
+        min-height: 132px;
+        padding: 21px 17px 18px 53px;
+      }
+
+      .quote {
+        left: 15px;
+        font-size: 48px;
+      }
+
+      .motivation-text {
+        font-size: 15px;
+      }
+
+      .phrase-progress span {
+        width: 31px;
+      }
+
+      .footer {
+        margin-top: 21px;
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .login-card {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .motivation {
+        padding-right: 13px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: .001ms !important;
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
         animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
       }
     }
   </style>
 </head>
+
 <body>
-  <span class="floating-particle particle-1"></span>
-  <span class="floating-particle particle-2"></span>
-  <span class="floating-particle particle-3"></span>
-  <span class="floating-particle particle-4"></span>
+  <div class="particles" aria-hidden="true">
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+  </div>
 
   <main class="page">
-    <section class="presentation" aria-label="Apresentação do sistema">
-      <div class="presentation-top">
-        
-<svg class="presentation-logo dakkai-vector-logo" viewBox="0 0 360 210" role="img" aria-label="Dakkai Sushi">
-  <defs>
-    <linearGradient id="goldLarge" x1="0" x2="1">
-      <stop offset="0" stop-color="#f3d494"/>
-      <stop offset="0.5" stop-color="#d4aa60"/>
-      <stop offset="1" stop-color="#a9782f"/>
-    </linearGradient>
-    <filter id="shadowLarge" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000" flood-opacity=".65"/>
-    </filter>
-  </defs>
-  <g filter="url(#shadowLarge)">
-    <circle cx="180" cy="72" r="54" fill="none" stroke="#b40b12" stroke-width="10" opacity=".95"/>
-    <path d="M128 78c18-22 38-32 58-30 18 2 33 13 46 31-19-7-36-8-51-3-17 5-34 6-53 2z"
-          fill="url(#goldLarge)"/>
-    <text x="180" y="145" text-anchor="middle" font-family="Georgia,serif"
-          font-size="58" font-weight="700" letter-spacing="5" fill="url(#goldLarge)">DAKKAI</text>
-    <text x="180" y="180" text-anchor="middle" font-family="Arial,sans-serif"
-          font-size="22" font-weight="700" letter-spacing="10" fill="#ffffff">SUSHI</text>
-  </g>
-</svg>
-        <div class="presentation-brand">
-          <div class="brand-line">Tradição, excelência e tecnologia</div>
-          <div class="brand-subline">Gestão inteligente para restaurante e delivery</div>
-        </div>
-      </div>
-
-      <h2>
-        Gestão de alto padrão
-        <strong>para quem nasceu para crescer.</strong>
-      </h2>
-
-      <p class="presentation-text">
-        Controle pedidos, cozinha, estoque, clientes e resultados em uma única
-        plataforma segura, moderna e preparada para a evolução da Dakkai Sushi.
-      </p>
-
-      <div class="motivation-card" aria-live="polite">
-        <div class="motivation-label">Mentalidade de crescimento</div>
-        <div class="motivation-text" id="motivationText">
-          Grandes negócios são construídos um pedido bem atendido de cada vez.
-        </div>
-        <div class="motivation-progress" aria-hidden="true">
-          <span id="motivationProgress"></span>
-        </div>
-      </div>
-
-      <div class="quality-list">
-        <div class="quality-item"><span></span> Pedidos em tempo real</div>
-        <div class="quality-item"><span></span> Gestão de estoque</div>
-        <div class="quality-item"><span></span> Controle financeiro</div>
-      </div>
-    </section>
+    <header class="brand">
+      <img
+        class="brand-logo"
+        src="/assets/logo-dakkai.webp"
+        alt="Dakkai Sushi Brasil Oriente"
+        fetchpriority="high"
+        decoding="async"
+        onerror="
+          if (!this.dataset.fallback) {
+            this.dataset.fallback = '1';
+            this.src = '/assets/icon-512.png';
+          } else {
+            this.style.display = 'none';
+          }
+        "
+      >
+    </header>
 
     <section class="login-card">
-      <div class="login-heading">
-        <div class="logo-wrapper">
-          
-<svg class="logo dakkai-vector-logo" viewBox="0 0 360 210" role="img" aria-label="Dakkai Sushi">
-  <defs>
-    <linearGradient id="goldSmall" x1="0" x2="1">
-      <stop offset="0" stop-color="#f3d494"/>
-      <stop offset="0.5" stop-color="#d4aa60"/>
-      <stop offset="1" stop-color="#a9782f"/>
-    </linearGradient>
-  </defs>
-  <circle cx="180" cy="72" r="54" fill="none" stroke="#b40b12" stroke-width="10"/>
-  <path d="M128 78c18-22 38-32 58-30 18 2 33 13 46 31-19-7-36-8-51-3-17 5-34 6-53 2z"
-        fill="url(#goldSmall)"/>
-  <text x="180" y="145" text-anchor="middle" font-family="Georgia,serif"
-        font-size="58" font-weight="700" letter-spacing="5" fill="url(#goldSmall)">DAKKAI</text>
-  <text x="180" y="180" text-anchor="middle" font-family="Arial,sans-serif"
-        font-size="22" font-weight="700" letter-spacing="10" fill="#ffffff">SUSHI</text>
-</svg>
-        </div>
+      <div class="login-header">
+        <h1>Bem-vindo <span>de volta</span></h1>
 
-        <div class="login-title">
-          <h1>Dakkai Sistema</h1>
-          <p class="subtitle">Gestão inteligente para restaurantes</p>
-        </div>
+        <div class="title-line"></div>
+
+        <p>
+          Entre com suas credenciais para acessar o sistema Dakkai Sushi.
+        </p>
       </div>
 
-      <div class="mobile-motivation" aria-live="polite">
-        <span class="mobile-motivation-label">Inspiração do dia</span>
-        <p id="mobileMotivationText">Grandes negócios são construídos um pedido bem atendido de cada vez.</p>
-        <div class="mobile-motivation-progress"><span id="mobileMotivationProgress"></span></div>
-      </div>
-
-      <form id="loginForm">
+      <form id="loginForm" novalidate>
         <div class="form-group">
-          <label for="email">E-mail</label>
-          <div class="input-area">
-            <span class="input-icon">✉</span>
-            <input id="email" name="email" type="email" placeholder="Digite seu e-mail" autocomplete="email" required>
+          <div class="input-box">
+            <span class="input-icon">♙</span>
+            <label class="input-label" for="email">Usuário</label>
+
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Digite seu usuário"
+              autocomplete="email"
+              required
+            >
           </div>
         </div>
 
         <div class="form-group">
-          <label for="senha">Senha</label>
-          <div class="input-area">
-            <span class="input-icon">◆</span>
-            <input id="senha" name="senha" type="password" placeholder="Digite sua senha" autocomplete="current-password" required>
-            <button class="toggle-password" id="togglePassword" type="button" aria-label="Mostrar ou ocultar senha">◉</button>
+          <div class="input-box">
+            <span class="input-icon">♙</span>
+            <label class="input-label" for="senha">Senha</label>
+
+            <input
+              id="senha"
+              name="senha"
+              type="password"
+              placeholder="Digite sua senha"
+              autocomplete="current-password"
+              required
+            >
+
+            <button
+              class="toggle-password"
+              id="togglePassword"
+              type="button"
+              aria-label="Mostrar senha"
+            >
+              ◉
+            </button>
           </div>
         </div>
 
         <div class="form-options">
           <label class="remember">
-            <input type="checkbox" id="remember">
-            Manter conectado
+            <input id="remember" type="checkbox">
+            <span>Lembrar de mim</span>
           </label>
-          <a href="#" class="forgot" id="forgotPassword">Esqueci minha senha</a>
+
+          <a class="forgot" id="forgotPassword" href="#">
+            Esqueceu sua senha?
+          </a>
         </div>
 
-        <button class="login-button" type="submit">
-          Entrar no sistema
-          <span>→</span>
+        <button class="login-button" id="loginButton" type="submit">
+          <span id="buttonText">ENTRAR</span>
+          <span class="button-arrow">→</span>
         </button>
+
+        <div class="status" id="statusMessage"></div>
       </form>
 
-      <div class="security">🔒 Ambiente administrativo protegido</div>
-      <footer>© 2026 Dakkai Sistema · Todos os direitos reservados</footer>
+      <div class="admin-divider">
+        Acesso administrativo
+      </div>
+
+      <div class="motivation" aria-live="polite">
+        <span class="quote">“</span>
+
+        <p class="motivation-text" id="motivationText">
+          Disciplina é escolher entre o que você quer agora e o que você quer mais.
+        </p>
+
+        <div class="phrase-progress" id="phraseProgress">
+          <span class="active"></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
     </section>
+
+    <footer class="footer">
+      Dakkai Sushi © 2026 · Todos os direitos reservados.
+    </footer>
   </main>
 
   <script>
     const loginForm = document.getElementById("loginForm");
-    const senha = document.getElementById("senha");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("senha");
     const togglePassword = document.getElementById("togglePassword");
     const forgotPassword = document.getElementById("forgotPassword");
+    const loginButton = document.getElementById("loginButton");
+    const buttonText = document.getElementById("buttonText");
+    const statusMessage = document.getElementById("statusMessage");
     const motivationText = document.getElementById("motivationText");
-    const motivationProgress = document.getElementById("motivationProgress");
-    const mobileMotivationText = document.getElementById("mobileMotivationText");
-    const mobileMotivationProgress = document.getElementById("mobileMotivationProgress");
 
-    const motivationalPhrases = [
-      "Grandes negócios são construídos um pedido bem atendido de cada vez.",
+    const progressItems = Array.from(
+      document.querySelectorAll("#phraseProgress span")
+    );
+
+    const phrases = [
+      "Disciplina é escolher entre o que você quer agora e o que você quer mais.",
       "Excelência não é um detalhe: é o padrão que faz o cliente voltar.",
-      "Cada entrega pontual fortalece a confiança na sua marca.",
-      "O restaurante cresce quando a equipe entende o propósito do negócio.",
-      "Quem controla os números toma decisões melhores e cresce com segurança.",
-      "Um cliente encantado vale mais do que qualquer anúncio.",
+      "Grandes negócios são construídos um pedido bem atendido de cada vez.",
       "A disciplina de hoje cria o faturamento de amanhã.",
       "Qualidade constante transforma um pedido em fidelidade.",
-      "Empreender é melhorar todos os dias, mesmo quando ninguém está olhando.",
-      "Toda grande marca começou com coragem, consistência e um bom produto.",
-      "Não venda apenas sushi: entregue experiência, cuidado e memória.",
-      "Processos organizados libertam o empresário para pensar no crescimento.",
-      "O sucesso do delivery começa antes do pedido e continua após a entrega.",
-      "Cada detalhe bem executado aumenta o valor percebido da sua marca.",
-      "Equipe motivada, cozinha organizada e cliente satisfeito: esse é o caminho.",
-      "O lucro é consequência de uma operação bem cuidada.",
-      "Crescer exige visão, mas também exige rotina bem feita.",
-      "O cliente percebe quando existe paixão por trás de cada prato.",
-      "Seu padrão de atendimento define o futuro do seu restaurante.",
-      "Uma marca forte nasce da repetição de boas experiências.",
-      "Quem acompanha estoque, custos e vendas lidera com clareza.",
-      "A velocidade impressiona; a qualidade fideliza.",
-      "Seu negócio merece decisões baseadas em dados, não em suposições.",
-      "Cada avaliação positiva é um patrimônio construído pela equipe.",
-      "O melhor marketing é um cliente dizendo: valeu cada centavo.",
-      "A inovação começa quando você decide não aceitar processos ruins.",
-      "Empresários fortes transformam problemas em processos melhores.",
-      "O crescimento sustentável acontece quando qualidade e gestão caminham juntas.",
-      "Faça hoje o trabalho que colocará sua marca entre as melhores amanhã.",
       "A Dakkai cresce quando cada pedido carrega o padrão da sua visão."
     ];
 
     let phraseIndex = 0;
-    let phraseTimer;
+    let phraseTimer = null;
+    let statusTimer = null;
 
-    function randomInterval() {
-      return Math.floor(Math.random() * 2001) + 2000;
+    function showStatus(message) {
+      clearTimeout(statusTimer);
+
+      statusMessage.textContent = message;
+      statusMessage.classList.add("show");
+
+      statusTimer = setTimeout(function () {
+        statusMessage.classList.remove("show");
+      }, 3500);
     }
 
-    function restartProgress(duration) {
-      [motivationProgress, mobileMotivationProgress].forEach((bar) => {
-        if (!bar) return;
-        bar.style.animation = "none";
-        void bar.offsetWidth;
-        bar.style.animation = `progress ${duration}ms linear`;
-      });
+    function changePhrase() {
+      motivationText.classList.add("changing");
+
+      setTimeout(function () {
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+
+        motivationText.textContent = phrases[phraseIndex];
+
+        progressItems.forEach(function (item, index) {
+          item.classList.toggle("active", index === phraseIndex);
+        });
+
+        motivationText.classList.remove("changing");
+      }, 400);
     }
 
-    function showNextPhrase() {
-      if (motivationText) motivationText.classList.add("is-changing");
-      if (mobileMotivationText) mobileMotivationText.classList.add("is-changing");
+    function startPhraseRotation() {
+      clearInterval(phraseTimer);
 
-      setTimeout(() => {
-        phraseIndex = (phraseIndex + 1) % motivationalPhrases.length;
-        const nextPhrase = motivationalPhrases[phraseIndex];
-        if (motivationText) {
-          motivationText.textContent = nextPhrase;
-          motivationText.classList.remove("is-changing");
-        }
-        if (mobileMotivationText) {
-          mobileMotivationText.textContent = nextPhrase;
-          mobileMotivationText.classList.remove("is-changing");
-        }
-
-        const nextDuration = randomInterval();
-        restartProgress(nextDuration);
-        clearTimeout(phraseTimer);
-        phraseTimer = setTimeout(showNextPhrase, nextDuration);
-      }, 420);
-    }
-
-    function startMotivationRotation() {
-      const initialDuration = randomInterval();
-      restartProgress(initialDuration);
-      phraseTimer = setTimeout(showNextPhrase, initialDuration);
+      phraseTimer = setInterval(function () {
+        changePhrase();
+      }, 5000);
     }
 
     togglePassword.addEventListener("click", function () {
-      const senhaVisivel = senha.type === "text";
-      senha.type = senhaVisivel ? "password" : "text";
-      togglePassword.textContent = senhaVisivel ? "◉" : "◌";
-      togglePassword.setAttribute("aria-label", senhaVisivel ? "Mostrar senha" : "Ocultar senha");
+      const passwordVisible = passwordInput.type === "text";
+
+      passwordInput.type = passwordVisible ? "password" : "text";
+
+      togglePassword.textContent = passwordVisible ? "◉" : "◌";
+
+      togglePassword.setAttribute(
+        "aria-label",
+        passwordVisible ? "Mostrar senha" : "Ocultar senha"
+      );
     });
 
     forgotPassword.addEventListener("click", function (event) {
       event.preventDefault();
-      alert("A recuperação de senha será conectada ao sistema de autenticação.");
+
+      showStatus(
+        "A recuperação de senha ainda será conectada ao sistema."
+      );
     });
 
     loginForm.addEventListener("submit", function (event) {
       event.preventDefault();
-      const email = document.getElementById("email").value.trim();
-      const password = senha.value.trim();
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value.trim();
 
       if (!email || !password) {
-        alert("Preencha o e-mail e a senha.");
+        showStatus("Preencha o usuário e a senha.");
         return;
       }
 
-      window.location.href = "dashboard.html";
+      loginButton.disabled = true;
+      buttonText.textContent = "ENTRANDO...";
+
+      setTimeout(function () {
+        window.location.href = "dashboard.html";
+      }, 700);
     });
 
-    startMotivationRotation();
+    startPhraseRotation();
   </script>
 </body>
 </html>
