@@ -1075,12 +1075,65 @@
     </div>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
+    "use strict";
+
+    const SUPABASE_URL = "https://zgsecglakjokifnhdxtk.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_O3YGOBBNIIVAxIdPRlP59Q_6k0d64lu";
+
+    /*
+      Armazenamento inteligente:
+      - Marcado "Lembrar de mim": sessão permanece no navegador.
+      - Desmarcado: sessão termina quando a aba/navegador é encerrado.
+    */
+    const authStorage = {
+      getItem(key) {
+        const remember = localStorage.getItem("dakkai_remember") === "true";
+        return remember
+          ? localStorage.getItem(key)
+          : sessionStorage.getItem(key);
+      },
+
+      setItem(key, value) {
+        const remember = localStorage.getItem("dakkai_remember") === "true";
+
+        if (remember) {
+          localStorage.setItem(key, value);
+          sessionStorage.removeItem(key);
+        } else {
+          sessionStorage.setItem(key, value);
+          localStorage.removeItem(key);
+        }
+      },
+
+      removeItem(key) {
+        localStorage.removeItem(key);
+        sessionStorage.removeItem(key);
+      }
+    };
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY,
+      {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true,
+          storage: authStorage
+        }
+      }
+    );
+
     const loginForm = document.getElementById("loginForm");
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("senha");
     const togglePassword = document.getElementById("togglePassword");
     const forgotPassword = document.getElementById("forgotPassword");
+    const rememberInput = document.getElementById("remember");
     const loginButton = document.getElementById("loginButton");
     const buttonText = document.getElementById("buttonText");
     const statusMessage = document.getElementById("statusMessage");
@@ -1102,16 +1155,75 @@
     let phraseIndex = 0;
     let phraseTimer = null;
     let statusTimer = null;
+    let loginInProgress = false;
 
-    function showStatus(message) {
+    function setLoading(loading) {
+      loginInProgress = loading;
+      loginButton.disabled = loading;
+      emailInput.disabled = loading;
+      passwordInput.disabled = loading;
+      rememberInput.disabled = loading;
+
+      buttonText.textContent = loading
+        ? "ENTRANDO..."
+        : "ENTRAR";
+
+      loginButton.setAttribute(
+        "aria-busy",
+        loading ? "true" : "false"
+      );
+    }
+
+    function showStatus(message, type = "error", duration = 4200) {
       clearTimeout(statusTimer);
 
       statusMessage.textContent = message;
       statusMessage.classList.add("show");
 
+      if (type === "success") {
+        statusMessage.style.background = "rgba(22, 125, 75, 0.94)";
+        statusMessage.style.borderColor = "rgba(79, 220, 146, 0.35)";
+      } else if (type === "info") {
+        statusMessage.style.background = "rgba(90, 64, 18, 0.94)";
+        statusMessage.style.borderColor = "rgba(218, 167, 68, 0.42)";
+      } else {
+        statusMessage.style.background = "rgba(181, 11, 19, 0.94)";
+        statusMessage.style.borderColor = "rgba(255, 255, 255, 0.14)";
+      }
+
       statusTimer = setTimeout(function () {
         statusMessage.classList.remove("show");
-      }, 3500);
+      }, duration);
+    }
+
+    function translateAuthError(error) {
+      const message = String(error?.message || "").toLowerCase();
+
+      if (
+        message.includes("invalid login credentials") ||
+        message.includes("invalid credentials")
+      ) {
+        return "E-mail ou senha incorretos.";
+      }
+
+      if (message.includes("email not confirmed")) {
+        return "Seu e-mail ainda não foi confirmado.";
+      }
+
+      if (
+        message.includes("failed to fetch") ||
+        message.includes("network")
+      ) {
+        return "Não foi possível conectar. Verifique sua internet e tente novamente.";
+      }
+
+      if (message.includes("too many requests")) {
+        return "Muitas tentativas. Aguarde alguns minutos e tente novamente.";
+      }
+
+      return error?.message
+        ? "Erro ao entrar: " + error.message
+        : "Não foi possível entrar no sistema.";
     }
 
     function changePhrase() {
@@ -1119,14 +1231,10 @@
 
       setTimeout(function () {
         phraseIndex = (phraseIndex + 1) % phrases.length;
-
         motivationText.textContent = phrases[phraseIndex];
 
         progressItems.forEach(function (item, index) {
-          item.classList.toggle(
-            "active",
-            index === phraseIndex
-          );
+          item.classList.toggle("active", index === phraseIndex);
         });
 
         motivationText.classList.remove("changing");
@@ -1135,21 +1243,43 @@
 
     function startPhraseRotation() {
       clearInterval(phraseTimer);
+      phraseTimer = setInterval(changePhrase, 5000);
+    }
 
-      phraseTimer = setInterval(function () {
-        changePhrase();
-      }, 5000);
+    async function redirectAuthenticatedUser() {
+      const {
+        data: { session },
+        error
+      } = await supabaseClient.auth.getSession();
+
+      if (error) {
+        console.error("[Dakkai Auth] Falha ao verificar sessão:", error);
+        return;
+      }
+
+      if (session) {
+        showStatus(
+          "Sessão encontrada. Abrindo a Central Dakkai...",
+          "success",
+          1600
+        );
+
+        setTimeout(function () {
+          window.location.replace("/admin/dashboard.html");
+        }, 450);
+      }
     }
 
     togglePassword.addEventListener("click", function () {
-      const passwordVisible =
-        passwordInput.type === "text";
+      const passwordVisible = passwordInput.type === "text";
 
-      passwordInput.type =
-        passwordVisible ? "password" : "text";
+      passwordInput.type = passwordVisible
+        ? "password"
+        : "text";
 
-      togglePassword.textContent =
-        passwordVisible ? "◉" : "◌";
+      togglePassword.textContent = passwordVisible
+        ? "◉"
+        : "◌";
 
       togglePassword.setAttribute(
         "aria-label",
@@ -1157,36 +1287,134 @@
           ? "Mostrar senha"
           : "Ocultar senha"
       );
+
+      passwordInput.focus();
     });
 
-    forgotPassword.addEventListener("click", function (event) {
+    forgotPassword.addEventListener("click", async function (event) {
       event.preventDefault();
 
-      showStatus(
-        "A recuperação de senha ainda será conectada ao sistema."
-      );
-    });
+      const email = emailInput.value.trim().toLowerCase();
 
-    loginForm.addEventListener("submit", function (event) {
-      event.preventDefault();
-
-      const email = emailInput.value.trim();
-      const password = passwordInput.value.trim();
-
-      if (!email || !password) {
-        showStatus("Preencha o usuário e a senha.");
+      if (!email) {
+        showStatus(
+          "Digite seu e-mail no campo Usuário para recuperar a senha.",
+          "info"
+        );
+        emailInput.focus();
         return;
       }
 
-      loginButton.disabled = true;
-      buttonText.textContent = "ENTRANDO...";
+      forgotPassword.style.pointerEvents = "none";
+      forgotPassword.style.opacity = "0.55";
 
-      setTimeout(function () {
-        window.location.href = "dashboard.html";
-      }, 700);
+      const { error } =
+        await supabaseClient.auth.resetPasswordForEmail(email, {
+          redirectTo:
+            window.location.origin + "/admin/index.html"
+        });
+
+      forgotPassword.style.pointerEvents = "";
+      forgotPassword.style.opacity = "";
+
+      if (error) {
+        showStatus(translateAuthError(error));
+        return;
+      }
+
+      showStatus(
+        "Enviamos as instruções de recuperação para o seu e-mail.",
+        "success",
+        6000
+      );
     });
 
+    loginForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      if (loginInProgress) {
+        return;
+      }
+
+      const email = emailInput.value.trim().toLowerCase();
+      const password = passwordInput.value;
+
+      if (!email || !password) {
+        showStatus("Preencha o usuário e a senha.");
+        (!email ? emailInput : passwordInput).focus();
+        return;
+      }
+
+      if (!emailInput.checkValidity()) {
+        showStatus("Digite um endereço de e-mail válido.");
+        emailInput.focus();
+        return;
+      }
+
+      localStorage.setItem(
+        "dakkai_remember",
+        rememberInput.checked ? "true" : "false"
+      );
+
+      setLoading(true);
+      showStatus(
+        "Validando suas credenciais com segurança...",
+        "info",
+        9000
+      );
+
+      try {
+        const { data, error } =
+          await supabaseClient.auth.signInWithPassword({
+            email,
+            password
+          });
+
+        if (error) {
+          throw error;
+        }
+
+        if (!data?.session) {
+          throw new Error(
+            "A autenticação foi aceita, mas a sessão não foi criada."
+          );
+        }
+
+        showStatus(
+          "Acesso autorizado. Abrindo a Central Dakkai...",
+          "success",
+          2600
+        );
+
+        window.setTimeout(function () {
+          window.location.replace("/admin/dashboard.html");
+        }, 650);
+      } catch (error) {
+        console.error("[Dakkai Auth] Erro de login:", error);
+        showStatus(translateAuthError(error));
+        setLoading(false);
+        passwordInput.select();
+      }
+    });
+
+    window.addEventListener("pageshow", function () {
+      setLoading(false);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (
+        event.key === "Enter" &&
+        document.activeElement === togglePassword
+      ) {
+        event.preventDefault();
+      }
+    });
+
+    rememberInput.checked =
+      localStorage.getItem("dakkai_remember") === "true";
+
     startPhraseRotation();
+    redirectAuthenticatedUser();
   </script>
 </body>
 </html>
