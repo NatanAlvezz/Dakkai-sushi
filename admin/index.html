@@ -664,48 +664,15 @@
 
       <div class="logo-wrapper">
         <img
-         <div class="logo-wrapper">
-
-    <img
-        src="../assets/logo-dakkai.webp"
-        class="logo"
-        alt="Logo Dakkai Sushi"
-        onerror="this.style.display='none';document.getElementById('fallbackLogo').style.display='block';"
-    >
-
-    <div
-        id="fallbackLogo"
-        style="
-            display:none;
-            text-align:center;
-            font-family:Georgia,serif;
-            font-size:40px;
-            font-weight:bold;
-            letter-spacing:3px;
-        "
-    >
-        DAKKAI
-    </div>
-
-</div>
+          src="/assets/logo-dakkai.webp"
           class="logo"
-          alt="Logo original Dakkai Sushi"
-          onerror="this.style.display='none'; document.getElementById('fallbackLogo').style.display='block';"
+          alt="Logo Dakkai Sushi"
+          width="520"
+          height="250"
+          decoding="async"
+          fetchpriority="high"
+          onerror="this.onerror=null; this.src='/assets/icon-192.png';"
         >
-
-        <div
-          id="fallbackLogo"
-          style="
-            display:none;
-            text-align:center;
-            font-family:Georgia,serif;
-            font-size:40px;
-            font-weight:bold;
-            letter-spacing:3px;
-          "
-        >
-          DAKKAI
-        </div>
       </div>
 
       <h1>Dakkai Sistema</h1>
@@ -765,7 +732,7 @@
             Manter conectado
           </label>
 
-          <a href="#" class="forgot">
+          <a href="#" class="forgot" id="forgotPassword">
             Esqueci minha senha
           </a>
         </div>
@@ -793,12 +760,18 @@
     const loginForm = document.getElementById("loginForm");
     const senha = document.getElementById("senha");
     const togglePassword = document.getElementById("togglePassword");
+    const forgotPassword = document.getElementById("forgotPassword");
 
     togglePassword.addEventListener("click", function () {
       const senhaVisivel = senha.type === "text";
 
       senha.type = senhaVisivel ? "password" : "text";
       togglePassword.textContent = senhaVisivel ? "◉" : "◌";
+    });
+
+    forgotPassword.addEventListener("click", function (event) {
+      event.preventDefault();
+      alert("A recuperação de senha será conectada ao sistema de autenticação.");
     });
 
     loginForm.addEventListener("submit", function (event) {
