@@ -17,11 +17,8 @@
       --vermelho: #b50b13;
       --vermelho-claro: #df2029;
       --dourado: #daa744;
-      --dourado-claro: #f1ce83;
       --branco: #ffffff;
-      --cinza: rgba(255, 255, 255, 0.64);
-      --borda: rgba(255, 255, 255, 0.18);
-      --fundo-card: rgba(8, 8, 8, 0.78);
+      --borda: rgba(255, 255, 255, 0.17);
     }
 
     * {
@@ -30,31 +27,33 @@
       box-sizing: border-box;
     }
 
-    html {
+    html,
+    body {
       width: 100%;
       min-height: 100%;
       background: #050505;
     }
 
     body {
-      width: 100%;
       min-height: 100vh;
       min-height: 100dvh;
       overflow-x: hidden;
+
       color: var(--branco);
       font-family: Arial, Helvetica, sans-serif;
+
       background:
         linear-gradient(
           180deg,
-          rgba(0, 0, 0, 0.26) 0%,
-          rgba(0, 0, 0, 0.48) 48%,
-          rgba(0, 0, 0, 0.82) 100%
+          rgba(0, 0, 0, 0.24) 0%,
+          rgba(0, 0, 0, 0.46) 48%,
+          rgba(0, 0, 0, 0.84) 100%
         ),
         linear-gradient(
           90deg,
-          rgba(0, 0, 0, 0.52),
-          rgba(0, 0, 0, 0.12),
-          rgba(0, 0, 0, 0.48)
+          rgba(0, 0, 0, 0.54),
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.5)
         ),
         url("https://images.unsplash.com/photo-1579027989536-b7b1f875659b?auto=format&fit=crop&w=2200&q=92");
 
@@ -66,25 +65,27 @@
 
     body::before {
       content: "";
+
       position: fixed;
       inset: 0;
       z-index: 0;
+
       pointer-events: none;
 
       background:
         radial-gradient(
-          circle at 50% 17%,
-          rgba(190, 12, 20, 0.18),
-          transparent 25%
+          circle at 50% 20%,
+          rgba(190, 12, 20, 0.17),
+          transparent 24%
         ),
         radial-gradient(
-          circle at 84% 65%,
-          rgba(190, 12, 20, 0.12),
-          transparent 26%
+          circle at 83% 67%,
+          rgba(190, 12, 20, 0.1),
+          transparent 27%
         ),
         radial-gradient(
-          circle at 20% 65%,
-          rgba(218, 167, 68, 0.07),
+          circle at 18% 67%,
+          rgba(218, 167, 68, 0.06),
           transparent 28%
         );
     }
@@ -92,6 +93,7 @@
     .page {
       position: relative;
       z-index: 2;
+
       width: 100%;
       min-height: 100vh;
       min-height: 100dvh;
@@ -99,29 +101,38 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
 
       padding:
-        max(24px, env(safe-area-inset-top))
-        18px
-        max(28px, env(safe-area-inset-bottom));
+        max(20px, env(safe-area-inset-top))
+        16px
+        max(22px, env(safe-area-inset-bottom));
     }
+
+    /* PARTÍCULAS */
 
     .particles {
       position: fixed;
       inset: 0;
       z-index: 1;
-      pointer-events: none;
+
       overflow: hidden;
+      pointer-events: none;
     }
 
     .particle {
       position: absolute;
       bottom: -30px;
+
       border-radius: 50%;
+
       background: var(--dourado);
-      box-shadow: 0 0 12px rgba(218, 167, 68, 0.55);
+
+      box-shadow:
+        0 0 12px rgba(218, 167, 68, 0.55);
+
       opacity: 0;
+
       animation: subir linear infinite;
     }
 
@@ -193,24 +204,43 @@
       }
     }
 
+    /* CONTEÚDO PRINCIPAL */
+
+    .login-wrapper {
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* LOGO REDUZIDA */
+
     .brand {
-      width: min(630px, 95%);
-      margin: 4px auto 24px;
+      width: min(330px, 80vw);
+      margin: 0 auto 14px;
+
       text-align: center;
     }
 
     .brand-logo {
       display: block;
-      width: min(500px, 92%);
-      max-height: 360px;
+
+      width: 100%;
+      max-width: 330px;
+      max-height: 190px;
+
       margin: 0 auto;
+
       object-fit: contain;
       object-position: center;
-      border-radius: 22px;
+
+      border-radius: 16px;
 
       filter:
-        drop-shadow(0 20px 38px rgba(0, 0, 0, 0.82))
-        drop-shadow(0 0 18px rgba(181, 11, 19, 0.2));
+        drop-shadow(0 16px 30px rgba(0, 0, 0, 0.82))
+        drop-shadow(0 0 14px rgba(181, 11, 19, 0.2));
 
       animation: flutuarLogo 4.6s ease-in-out infinite;
     }
@@ -222,41 +252,47 @@
       }
 
       50% {
-        transform: translateY(-10px) scale(1.012);
+        transform: translateY(-6px) scale(1.008);
       }
     }
 
+    /* CARD REDUZIDO E CENTRALIZADO */
+
     .login-card {
       position: relative;
-      width: min(525px, 100%);
+
+      width: min(380px, 94vw);
+
       overflow: hidden;
 
-      padding: 36px 41px 30px;
+      padding: 24px 25px 21px;
 
       border: 1px solid var(--borda);
-      border-radius: 24px;
+      border-radius: 20px;
 
       background:
         linear-gradient(
           145deg,
           rgba(18, 14, 11, 0.86),
-          rgba(5, 5, 5, 0.89)
+          rgba(5, 5, 5, 0.9)
         );
 
       box-shadow:
-        0 38px 100px rgba(0, 0, 0, 0.76),
+        0 30px 80px rgba(0, 0, 0, 0.74),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
 
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
+      backdrop-filter: blur(21px);
+      -webkit-backdrop-filter: blur(21px);
     }
 
     .login-card::before {
       content: "";
+
       position: absolute;
       top: 0;
-      left: 70px;
-      right: 70px;
+      left: 55px;
+      right: 55px;
+
       height: 1px;
 
       background:
@@ -270,34 +306,39 @@
 
     .login-card::after {
       content: "";
+
       position: absolute;
-      top: -130px;
+      top: -120px;
       right: -110px;
 
-      width: 260px;
-      height: 260px;
+      width: 230px;
+      height: 230px;
 
       border-radius: 50%;
 
-      background: rgba(181, 11, 19, 0.14);
+      background: rgba(181, 11, 19, 0.13);
       filter: blur(18px);
 
       pointer-events: none;
     }
 
+    /* CABEÇALHO */
+
     .login-header {
       position: relative;
       z-index: 2;
+
+      margin-bottom: 21px;
+
       text-align: center;
-      margin-bottom: 29px;
     }
 
     .login-header h1 {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(31px, 5vw, 39px);
+      font-size: 28px;
       font-weight: 400;
       line-height: 1.15;
-      letter-spacing: -0.7px;
+      letter-spacing: -0.5px;
     }
 
     .login-header h1 span {
@@ -305,38 +346,47 @@
     }
 
     .title-line {
-      width: 57px;
+      width: 48px;
       height: 3px;
-      margin: 17px auto 18px;
+
+      margin: 12px auto 13px;
+
       border-radius: 999px;
+
       background: var(--vermelho-claro);
-      box-shadow: 0 0 15px rgba(223, 32, 41, 0.48);
+
+      box-shadow:
+        0 0 13px rgba(223, 32, 41, 0.45);
     }
 
     .login-header p {
-      max-width: 340px;
+      max-width: 300px;
       margin: auto;
 
       color: rgba(255, 255, 255, 0.62);
 
-      font-size: 16px;
-      line-height: 1.55;
+      font-size: 13px;
+      line-height: 1.5;
     }
+
+    /* CAMPOS */
 
     .form-group {
       position: relative;
       z-index: 2;
-      margin-bottom: 18px;
+
+      margin-bottom: 13px;
     }
 
     .input-box {
       position: relative;
-      min-height: 94px;
 
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      border-radius: 14px;
+      min-height: 70px;
 
-      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.17);
+      border-radius: 12px;
+
+      background: rgba(0, 0, 0, 0.26);
 
       transition:
         border-color 0.25s ease,
@@ -354,39 +404,39 @@
 
       box-shadow:
         0 0 0 4px rgba(218, 167, 68, 0.08),
-        0 15px 35px rgba(0, 0, 0, 0.28);
+        0 13px 30px rgba(0, 0, 0, 0.27);
     }
 
     .input-label {
       position: absolute;
-      top: 17px;
-      left: 54px;
+      top: 12px;
+      left: 45px;
 
       color: var(--dourado);
 
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 600;
     }
 
     .input-icon {
       position: absolute;
-      top: 16px;
-      left: 19px;
+      top: 11px;
+      left: 16px;
 
       color: rgba(255, 255, 255, 0.9);
 
-      font-size: 22px;
+      font-size: 18px;
       line-height: 1;
     }
 
     .input-box input {
       position: absolute;
-      left: 21px;
-      right: 53px;
-      bottom: 8px;
+      left: 17px;
+      right: 48px;
+      bottom: 5px;
 
-      width: calc(100% - 74px);
-      height: 47px;
+      width: calc(100% - 65px);
+      height: 37px;
 
       border: 0;
       outline: 0;
@@ -394,35 +444,38 @@
       color: var(--branco);
       background: transparent;
 
-      font-size: 17px;
+      font-size: 14px;
     }
 
     .input-box input::placeholder {
-      color: rgba(255, 255, 255, 0.43);
+      color: rgba(255, 255, 255, 0.42);
     }
 
     .toggle-password {
       position: absolute;
-      right: 10px;
-      bottom: 13px;
+      right: 7px;
+      bottom: 5px;
 
-      width: 42px;
-      height: 42px;
+      width: 38px;
+      height: 38px;
 
       border: 0;
-      border-radius: 10px;
+      border-radius: 9px;
 
-      color: rgba(255, 255, 255, 0.64);
+      color: rgba(255, 255, 255, 0.65);
       background: transparent;
 
-      font-size: 20px;
+      font-size: 18px;
+
       cursor: pointer;
     }
 
     .toggle-password:hover {
-      color: var(--branco);
+      color: #ffffff;
       background: rgba(255, 255, 255, 0.06);
     }
+
+    /* OPÇÕES */
 
     .form-options {
       position: relative;
@@ -432,27 +485,28 @@
       align-items: center;
       justify-content: space-between;
 
-      gap: 16px;
+      gap: 12px;
 
-      margin: 4px 1px 23px;
+      margin: 2px 1px 16px;
     }
 
     .remember {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
 
       color: rgba(255, 255, 255, 0.87);
 
-      font-size: 14px;
+      font-size: 12px;
+
       cursor: pointer;
     }
 
     .remember input {
       appearance: none;
 
-      width: 20px;
-      height: 20px;
+      width: 17px;
+      height: 17px;
 
       display: grid;
       place-items: center;
@@ -461,6 +515,7 @@
       border-radius: 3px;
 
       background: transparent;
+
       cursor: pointer;
     }
 
@@ -474,14 +529,15 @@
 
       color: #ffffff;
 
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 800;
       line-height: 1;
     }
 
     .forgot {
       color: var(--dourado);
-      font-size: 14px;
+
+      font-size: 12px;
       text-decoration: none;
     }
 
@@ -489,22 +545,25 @@
       text-decoration: underline;
     }
 
+    /* BOTÃO REDUZIDO */
+
     .login-button {
       position: relative;
       z-index: 2;
 
       width: 100%;
-      height: 67px;
+      height: 50px;
 
       overflow: hidden;
 
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 30px;
+
+      gap: 23px;
 
       border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 13px;
+      border-radius: 11px;
 
       color: #ffffff;
 
@@ -517,10 +576,10 @@
         );
 
       box-shadow:
-        0 17px 40px rgba(150, 0, 8, 0.38),
-        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        0 15px 34px rgba(150, 0, 8, 0.37),
+        inset 0 1px 0 rgba(255, 255, 255, 0.17);
 
-      font-size: 20px;
+      font-size: 15px;
       font-weight: 800;
       letter-spacing: 0.8px;
 
@@ -555,8 +614,8 @@
       filter: brightness(1.12);
 
       box-shadow:
-        0 21px 48px rgba(150, 0, 8, 0.53),
-        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+        0 19px 42px rgba(150, 0, 8, 0.52),
+        inset 0 1px 0 rgba(255, 255, 255, 0.21);
     }
 
     .login-button:hover::before {
@@ -575,9 +634,11 @@
     }
 
     .button-arrow {
-      font-size: 28px;
+      font-size: 22px;
       font-weight: 300;
     }
+
+    /* DIVISOR */
 
     .admin-divider {
       position: relative;
@@ -585,21 +646,24 @@
 
       display: flex;
       align-items: center;
-      gap: 18px;
 
-      margin: 35px 0 27px;
+      gap: 13px;
 
-      color: rgba(255, 255, 255, 0.43);
+      margin: 22px 0 17px;
 
-      font-size: 14px;
-      letter-spacing: 0.5px;
+      color: rgba(255, 255, 255, 0.42);
+
+      font-size: 10px;
+      letter-spacing: 0.6px;
       text-transform: uppercase;
     }
 
     .admin-divider::before,
     .admin-divider::after {
       content: "";
+
       flex: 1;
+
       height: 1px;
 
       background:
@@ -614,17 +678,19 @@
       transform: scaleX(-1);
     }
 
+    /* FRASE REDUZIDA */
+
     .motivation {
       position: relative;
       z-index: 2;
 
-      min-height: 141px;
+      min-height: 91px;
       overflow: hidden;
 
-      padding: 24px 24px 20px 64px;
+      padding: 15px 15px 13px 46px;
 
-      border: 1px solid rgba(255, 255, 255, 0.19);
-      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 12px;
 
       background:
         linear-gradient(
@@ -636,26 +702,26 @@
 
     .quote {
       position: absolute;
-      top: 17px;
-      left: 19px;
+      top: 11px;
+      left: 14px;
 
       color: var(--dourado);
 
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 55px;
+      font-size: 40px;
       line-height: 1;
     }
 
     .motivation-text {
-      min-height: 66px;
+      min-height: 43px;
 
       display: flex;
       align-items: center;
 
       color: rgba(255, 255, 255, 0.95);
 
-      font-size: 17px;
-      line-height: 1.5;
+      font-size: 12px;
+      line-height: 1.45;
 
       transition:
         opacity 0.4s ease,
@@ -665,7 +731,7 @@
 
     .motivation-text.changing {
       opacity: 0;
-      transform: translateY(8px);
+      transform: translateY(7px);
       filter: blur(3px);
     }
 
@@ -673,18 +739,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 9px;
 
-      margin-top: 15px;
+      gap: 6px;
+
+      margin-top: 9px;
     }
 
     .phrase-progress span {
-      width: 39px;
-      height: 5px;
+      width: 26px;
+      height: 4px;
 
       border-radius: 999px;
 
-      background: rgba(255, 255, 255, 0.42);
+      background: rgba(255, 255, 255, 0.4);
 
       transition:
         background 0.3s ease,
@@ -696,55 +763,47 @@
       transform: scaleX(1.08);
     }
 
+    /* MENSAGEM */
+
     .status {
       position: relative;
       z-index: 3;
 
       display: none;
 
-      margin: 15px 0 0;
-      padding: 12px 15px;
+      margin-top: 11px;
+      padding: 9px 11px;
 
       border: 1px solid rgba(255, 255, 255, 0.14);
-      border-radius: 10px;
+      border-radius: 8px;
 
       color: #ffffff;
       background: rgba(181, 11, 19, 0.9);
 
       text-align: center;
-      font-size: 13px;
+      font-size: 11px;
     }
 
     .status.show {
       display: block;
     }
 
-    .footer {
-      margin-top: 28px;
+    /* RODAPÉ */
 
-      color: rgba(255, 255, 255, 0.47);
+    .footer {
+      margin-top: 15px;
+
+      color: rgba(255, 255, 255, 0.45);
 
       text-align: center;
-      font-size: 13px;
+      font-size: 10px;
       letter-spacing: 0.2px;
 
-      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+      text-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.8);
     }
 
-    @media (min-width: 900px) {
-      .page {
-        padding-top: 28px;
-      }
-
-      .brand {
-        margin-bottom: 20px;
-      }
-
-      .brand-logo {
-        width: min(510px, 70vw);
-        max-height: 330px;
-      }
-    }
+    /* CELULAR */
 
     @media (max-width: 600px) {
       body {
@@ -753,103 +812,96 @@
       }
 
       .page {
-        padding-left: 12px;
-        padding-right: 12px;
+        justify-content: flex-start;
+
+        padding-top:
+          max(16px, env(safe-area-inset-top));
       }
 
       .brand {
-        width: 100%;
-        margin-bottom: 17px;
+        width: min(285px, 78vw);
+        margin-bottom: 12px;
       }
 
       .brand-logo {
-        width: min(380px, 96%);
-        max-height: 255px;
-        border-radius: 17px;
+        max-width: 285px;
+        max-height: 165px;
       }
 
       .login-card {
-        padding: 27px 20px 23px;
-        border-radius: 21px;
-      }
-
-      .login-header {
-        margin-bottom: 24px;
+        width: min(370px, 96vw);
+        padding: 22px 19px 19px;
       }
 
       .login-header h1 {
-        font-size: 30px;
+        font-size: 26px;
       }
 
       .login-header p {
-        font-size: 14px;
+        font-size: 12px;
       }
 
       .input-box {
-        min-height: 86px;
-      }
-
-      .input-box input {
-        font-size: 16px;
+        min-height: 68px;
       }
 
       .form-options {
-        align-items: flex-start;
-        gap: 12px;
+        gap: 8px;
       }
 
       .remember,
       .forgot {
-        font-size: 12px;
+        font-size: 11px;
       }
 
       .login-button {
-        height: 60px;
-        font-size: 17px;
-      }
-
-      .admin-divider {
-        margin: 28px 0 22px;
-        font-size: 12px;
-      }
-
-      .motivation {
-        min-height: 132px;
-        padding: 21px 17px 18px 53px;
-      }
-
-      .quote {
-        left: 15px;
-        font-size: 48px;
+        height: 49px;
       }
 
       .motivation-text {
-        font-size: 15px;
-      }
-
-      .phrase-progress span {
-        width: 31px;
-      }
-
-      .footer {
-        margin-top: 21px;
-        font-size: 11px;
+        font-size: 11.5px;
       }
     }
 
-    @media (max-width: 390px) {
+    @media (max-width: 370px) {
+      .brand {
+        width: 250px;
+      }
+
+      .brand-logo {
+        max-width: 250px;
+        max-height: 145px;
+      }
+
+      .login-card {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
       .form-options {
         flex-direction: column;
         align-items: flex-start;
       }
+    }
 
-      .login-card {
-        padding-left: 16px;
-        padding-right: 16px;
+    @media (max-height: 820px) and (min-width: 601px) {
+      .brand {
+        width: 260px;
+        margin-bottom: 8px;
       }
 
-      .motivation {
-        padding-right: 13px;
+      .brand-logo {
+        max-width: 260px;
+        max-height: 140px;
+      }
+
+      .login-card {
+        transform: scale(0.92);
+        transform-origin: top center;
+      }
+
+      .footer {
+        margin-top: -10px;
       }
     }
 
@@ -876,121 +928,151 @@
   </div>
 
   <main class="page">
-    <header class="brand">
-      <img
-        class="brand-logo"
-        src="/assets/logo-dakkai.webp"
-        alt="Dakkai Sushi Brasil Oriente"
-        fetchpriority="high"
-        decoding="async"
-        onerror="
-          if (!this.dataset.fallback) {
-            this.dataset.fallback = '1';
-            this.src = '/assets/icon-512.png';
-          } else {
-            this.style.display = 'none';
-          }
-        "
-      >
-    </header>
+    <div class="login-wrapper">
+      <header class="brand">
+        <img
+          class="brand-logo"
+          src="/assets/logo-dakkai.webp"
+          alt="Dakkai Sushi Brasil Oriente"
+          fetchpriority="high"
+          decoding="async"
+          onerror="
+            if (!this.dataset.fallback) {
+              this.dataset.fallback = '1';
+              this.src = '/assets/icon-512.png';
+            } else {
+              this.style.display = 'none';
+            }
+          "
+        >
+      </header>
 
-    <section class="login-card">
-      <div class="login-header">
-        <h1>Bem-vindo <span>de volta</span></h1>
+      <section class="login-card">
+        <div class="login-header">
+          <h1>
+            Bem-vindo <span>de volta</span>
+          </h1>
 
-        <div class="title-line"></div>
+          <div class="title-line"></div>
 
-        <p>
-          Entre com suas credenciais para acessar o sistema Dakkai Sushi.
-        </p>
-      </div>
+          <p>
+            Entre com suas credenciais para acessar o sistema Dakkai Sushi.
+          </p>
+        </div>
 
-      <form id="loginForm" novalidate>
-        <div class="form-group">
-          <div class="input-box">
-            <span class="input-icon">♙</span>
-            <label class="input-label" for="email">Usuário</label>
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <div class="input-box">
+              <span class="input-icon">♙</span>
 
-            <input
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Digite seu usuário"
-              autocomplete="email"
-              required
+              <label class="input-label" for="email">
+                Usuário
+              </label>
+
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Digite seu usuário"
+                autocomplete="email"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-box">
+              <span class="input-icon">♙</span>
+
+              <label class="input-label" for="senha">
+                Senha
+              </label>
+
+              <input
+                id="senha"
+                name="senha"
+                type="password"
+                placeholder="Digite sua senha"
+                autocomplete="current-password"
+                required
+              >
+
+              <button
+                class="toggle-password"
+                id="togglePassword"
+                type="button"
+                aria-label="Mostrar senha"
+              >
+                ◉
+              </button>
+            </div>
+          </div>
+
+          <div class="form-options">
+            <label class="remember">
+              <input id="remember" type="checkbox">
+              <span>Lembrar de mim</span>
+            </label>
+
+            <a
+              class="forgot"
+              id="forgotPassword"
+              href="#"
             >
+              Esqueceu sua senha?
+            </a>
+          </div>
+
+          <button
+            class="login-button"
+            id="loginButton"
+            type="submit"
+          >
+            <span id="buttonText">ENTRAR</span>
+            <span class="button-arrow">→</span>
+          </button>
+
+          <div
+            class="status"
+            id="statusMessage"
+          ></div>
+        </form>
+
+        <div class="admin-divider">
+          Acesso administrativo
+        </div>
+
+        <div
+          class="motivation"
+          aria-live="polite"
+        >
+          <span class="quote">“</span>
+
+          <p
+            class="motivation-text"
+            id="motivationText"
+          >
+            Disciplina é escolher entre o que você quer agora e o que você quer mais.
+          </p>
+
+          <div
+            class="phrase-progress"
+            id="phraseProgress"
+          >
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
         </div>
+      </section>
 
-        <div class="form-group">
-          <div class="input-box">
-            <span class="input-icon">♙</span>
-            <label class="input-label" for="senha">Senha</label>
-
-            <input
-              id="senha"
-              name="senha"
-              type="password"
-              placeholder="Digite sua senha"
-              autocomplete="current-password"
-              required
-            >
-
-            <button
-              class="toggle-password"
-              id="togglePassword"
-              type="button"
-              aria-label="Mostrar senha"
-            >
-              ◉
-            </button>
-          </div>
-        </div>
-
-        <div class="form-options">
-          <label class="remember">
-            <input id="remember" type="checkbox">
-            <span>Lembrar de mim</span>
-          </label>
-
-          <a class="forgot" id="forgotPassword" href="#">
-            Esqueceu sua senha?
-          </a>
-        </div>
-
-        <button class="login-button" id="loginButton" type="submit">
-          <span id="buttonText">ENTRAR</span>
-          <span class="button-arrow">→</span>
-        </button>
-
-        <div class="status" id="statusMessage"></div>
-      </form>
-
-      <div class="admin-divider">
-        Acesso administrativo
-      </div>
-
-      <div class="motivation" aria-live="polite">
-        <span class="quote">“</span>
-
-        <p class="motivation-text" id="motivationText">
-          Disciplina é escolher entre o que você quer agora e o que você quer mais.
-        </p>
-
-        <div class="phrase-progress" id="phraseProgress">
-          <span class="active"></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      Dakkai Sushi © 2026 · Todos os direitos reservados.
-    </footer>
+      <footer class="footer">
+        Dakkai Sushi © 2026 · Todos os direitos reservados.
+      </footer>
+    </div>
   </main>
 
   <script>
@@ -1041,7 +1123,10 @@
         motivationText.textContent = phrases[phraseIndex];
 
         progressItems.forEach(function (item, index) {
-          item.classList.toggle("active", index === phraseIndex);
+          item.classList.toggle(
+            "active",
+            index === phraseIndex
+          );
         });
 
         motivationText.classList.remove("changing");
@@ -1057,15 +1142,20 @@
     }
 
     togglePassword.addEventListener("click", function () {
-      const passwordVisible = passwordInput.type === "text";
+      const passwordVisible =
+        passwordInput.type === "text";
 
-      passwordInput.type = passwordVisible ? "password" : "text";
+      passwordInput.type =
+        passwordVisible ? "password" : "text";
 
-      togglePassword.textContent = passwordVisible ? "◉" : "◌";
+      togglePassword.textContent =
+        passwordVisible ? "◉" : "◌";
 
       togglePassword.setAttribute(
         "aria-label",
-        passwordVisible ? "Mostrar senha" : "Ocultar senha"
+        passwordVisible
+          ? "Mostrar senha"
+          : "Ocultar senha"
       );
     });
 
