@@ -2,80 +2,1191 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
   <meta name="theme-color" content="#050505">
+
   <title>Dakkai Sushi | Acesso Administrativo</title>
+
   <style>
-    :root{--red:#b50b13;--red2:#df2029;--gold:#daa744;--white:#fff;--line:rgba(255,255,255,.16)}
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{min-height:100vh;display:grid;place-items:center;padding:20px;color:#fff;font-family:Arial,Helvetica,sans-serif;background:
-      linear-gradient(rgba(0,0,0,.52),rgba(0,0,0,.82)),
-      url("https://images.unsplash.com/photo-1579027989536-b7b1f875659b?auto=format&fit=crop&w=2200&q=92") center/cover fixed}
-    .wrap{width:min(380px,94vw);text-align:center}
-    .logo{width:min(300px,78vw);max-height:150px;object-fit:contain;margin:0 auto 14px;filter:drop-shadow(0 14px 28px #000)}
-    .card{padding:25px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(18,14,11,.88),rgba(5,5,5,.92));box-shadow:0 30px 80px rgba(0,0,0,.7);backdrop-filter:blur(20px)}
-    h1{font:400 28px Georgia,serif} h1 span{color:var(--gold)}
-    .sub{color:rgba(255,255,255,.62);font-size:13px;line-height:1.5;margin:10px 0 20px}
-    label{display:block;text-align:left;color:var(--gold);font-size:12px;margin:0 0 7px 3px}
-    input{width:100%;height:50px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.35);color:#fff;padding:0 14px;font-size:14px;outline:none;margin-bottom:14px}
-    input:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(218,167,68,.08)}
-    button{width:100%;height:49px;border:0;border-radius:12px;color:#fff;font-weight:800;letter-spacing:.7px;background:linear-gradient(90deg,var(--red2),var(--red));cursor:pointer}
-    button:disabled{opacity:.6;cursor:wait}
-    .status{min-height:20px;margin-top:13px;color:#ffc2c5;font-size:12px;line-height:1.4}
-    .hint{margin-top:14px;color:rgba(255,255,255,.45);font-size:10px}
+    :root {
+      --vermelho: #b50b13;
+      --vermelho-claro: #df2029;
+      --dourado: #daa744;
+      --branco: #ffffff;
+      --borda: rgba(255, 255, 255, 0.17);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      background: #050505;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+
+      color: var(--branco);
+      font-family: Arial, Helvetica, sans-serif;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.24) 0%,
+          rgba(0, 0, 0, 0.46) 48%,
+          rgba(0, 0, 0, 0.84) 100%
+        ),
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.54),
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.5)
+        ),
+        url("https://images.unsplash.com/photo-1579027989536-b7b1f875659b?auto=format&fit=crop&w=2200&q=92");
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    body::before {
+      content: "";
+
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+
+      pointer-events: none;
+
+      background:
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(190, 12, 20, 0.17),
+          transparent 24%
+        ),
+        radial-gradient(
+          circle at 83% 67%,
+          rgba(190, 12, 20, 0.1),
+          transparent 27%
+        ),
+        radial-gradient(
+          circle at 18% 67%,
+          rgba(218, 167, 68, 0.06),
+          transparent 28%
+        );
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100dvh;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      padding:
+        max(20px, env(safe-area-inset-top))
+        16px
+        max(22px, env(safe-area-inset-bottom));
+    }
+
+    /* PARTÍCULAS */
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      bottom: -30px;
+
+      border-radius: 50%;
+
+      background: var(--dourado);
+
+      box-shadow:
+        0 0 12px rgba(218, 167, 68, 0.55);
+
+      opacity: 0;
+
+      animation: subir linear infinite;
+    }
+
+    .particle:nth-child(1) {
+      left: 8%;
+      width: 4px;
+      height: 4px;
+      animation-duration: 13s;
+    }
+
+    .particle:nth-child(2) {
+      left: 21%;
+      width: 6px;
+      height: 6px;
+      animation-duration: 17s;
+      animation-delay: 2s;
+    }
+
+    .particle:nth-child(3) {
+      left: 38%;
+      width: 3px;
+      height: 3px;
+      animation-duration: 15s;
+      animation-delay: 5s;
+    }
+
+    .particle:nth-child(4) {
+      right: 32%;
+      width: 5px;
+      height: 5px;
+      background: var(--vermelho-claro);
+      animation-duration: 18s;
+      animation-delay: 1s;
+    }
+
+    .particle:nth-child(5) {
+      right: 18%;
+      width: 4px;
+      height: 4px;
+      animation-duration: 14s;
+      animation-delay: 4s;
+    }
+
+    .particle:nth-child(6) {
+      right: 7%;
+      width: 6px;
+      height: 6px;
+      animation-duration: 20s;
+      animation-delay: 7s;
+    }
+
+    @keyframes subir {
+      0% {
+        transform: translate3d(0, 0, 0) scale(0.7);
+        opacity: 0;
+      }
+
+      12% {
+        opacity: 0.72;
+      }
+
+      75% {
+        opacity: 0.28;
+      }
+
+      100% {
+        transform: translate3d(35px, -115vh, 0) scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    /* CONTEÚDO PRINCIPAL */
+
+    .login-wrapper {
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* LOGO REDUZIDA */
+
+    .brand {
+      width: min(330px, 80vw);
+      margin: 0 auto 14px;
+
+      text-align: center;
+    }
+
+    .brand-logo {
+      display: block;
+
+      width: 100%;
+      max-width: 330px;
+      max-height: 190px;
+
+      margin: 0 auto;
+
+      object-fit: contain;
+      object-position: center;
+
+      border-radius: 16px;
+
+      filter:
+        drop-shadow(0 16px 30px rgba(0, 0, 0, 0.82))
+        drop-shadow(0 0 14px rgba(181, 11, 19, 0.2));
+
+      animation: flutuarLogo 4.6s ease-in-out infinite;
+    }
+
+    @keyframes flutuarLogo {
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-6px) scale(1.008);
+      }
+    }
+
+    /* CARD REDUZIDO E CENTRALIZADO */
+
+    .login-card {
+      position: relative;
+
+      width: min(380px, 94vw);
+
+      overflow: hidden;
+
+      padding: 24px 25px 21px;
+
+      border: 1px solid var(--borda);
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(18, 14, 11, 0.86),
+          rgba(5, 5, 5, 0.9)
+        );
+
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.74),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+      backdrop-filter: blur(21px);
+      -webkit-backdrop-filter: blur(21px);
+    }
+
+    .login-card::before {
+      content: "";
+
+      position: absolute;
+      top: 0;
+      left: 55px;
+      right: 55px;
+
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(218, 167, 68, 0.9),
+          transparent
+        );
+    }
+
+    .login-card::after {
+      content: "";
+
+      position: absolute;
+      top: -120px;
+      right: -110px;
+
+      width: 230px;
+      height: 230px;
+
+      border-radius: 50%;
+
+      background: rgba(181, 11, 19, 0.13);
+      filter: blur(18px);
+
+      pointer-events: none;
+    }
+
+    /* CABEÇALHO */
+
+    .login-header {
+      position: relative;
+      z-index: 2;
+
+      margin-bottom: 21px;
+
+      text-align: center;
+    }
+
+    .login-header h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+    }
+
+    .login-header h1 span {
+      color: var(--dourado);
+    }
+
+    .title-line {
+      width: 48px;
+      height: 3px;
+
+      margin: 12px auto 13px;
+
+      border-radius: 999px;
+
+      background: var(--vermelho-claro);
+
+      box-shadow:
+        0 0 13px rgba(223, 32, 41, 0.45);
+    }
+
+    .login-header p {
+      max-width: 300px;
+      margin: auto;
+
+      color: rgba(255, 255, 255, 0.62);
+
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* CAMPOS */
+
+    .form-group {
+      position: relative;
+      z-index: 2;
+
+      margin-bottom: 13px;
+    }
+
+    .input-box {
+      position: relative;
+
+      min-height: 70px;
+
+      border: 1px solid rgba(255, 255, 255, 0.17);
+      border-radius: 12px;
+
+      background: rgba(0, 0, 0, 0.26);
+
+      transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease,
+        background 0.25s ease;
+    }
+
+    .input-box:focus-within {
+      transform: translateY(-1px);
+
+      border-color: rgba(218, 167, 68, 0.75);
+
+      background: rgba(0, 0, 0, 0.39);
+
+      box-shadow:
+        0 0 0 4px rgba(218, 167, 68, 0.08),
+        0 13px 30px rgba(0, 0, 0, 0.27);
+    }
+
+    .input-label {
+      position: absolute;
+      top: 12px;
+      left: 45px;
+
+      color: var(--dourado);
+
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .input-icon {
+      position: absolute;
+      top: 11px;
+      left: 16px;
+
+      color: rgba(255, 255, 255, 0.9);
+
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .input-box input {
+      position: absolute;
+      left: 17px;
+      right: 48px;
+      bottom: 5px;
+
+      width: calc(100% - 65px);
+      height: 37px;
+
+      border: 0;
+      outline: 0;
+
+      color: var(--branco);
+      background: transparent;
+
+      font-size: 14px;
+    }
+
+    .input-box input::placeholder {
+      color: rgba(255, 255, 255, 0.42);
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 7px;
+      bottom: 5px;
+
+      width: 38px;
+      height: 38px;
+
+      border: 0;
+      border-radius: 9px;
+
+      color: rgba(255, 255, 255, 0.65);
+      background: transparent;
+
+      font-size: 18px;
+
+      cursor: pointer;
+    }
+
+    .toggle-password:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* OPÇÕES */
+
+    .form-options {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 12px;
+
+      margin: 2px 1px 16px;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      color: rgba(255, 255, 255, 0.87);
+
+      font-size: 12px;
+
+      cursor: pointer;
+    }
+
+    .remember input {
+      appearance: none;
+
+      width: 17px;
+      height: 17px;
+
+      display: grid;
+      place-items: center;
+
+      border: 2px solid rgba(255, 255, 255, 0.86);
+      border-radius: 3px;
+
+      background: transparent;
+
+      cursor: pointer;
+    }
+
+    .remember input:checked {
+      border-color: var(--vermelho-claro);
+      background: var(--vermelho);
+    }
+
+    .remember input:checked::after {
+      content: "✓";
+
+      color: #ffffff;
+
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .forgot {
+      color: var(--dourado);
+
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .forgot:hover {
+      text-decoration: underline;
+    }
+
+    /* BOTÃO REDUZIDO */
+
+    .login-button {
+      position: relative;
+      z-index: 2;
+
+      width: 100%;
+      height: 50px;
+
+      overflow: hidden;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 23px;
+
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 11px;
+
+      color: #ffffff;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ca1a23,
+          #a90811 50%,
+          #c81720
+        );
+
+      box-shadow:
+        0 15px 34px rgba(150, 0, 8, 0.37),
+        inset 0 1px 0 rgba(255, 255, 255, 0.17);
+
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .login-button::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          110deg,
+          transparent 20%,
+          rgba(255, 255, 255, 0.22) 50%,
+          transparent 78%
+        );
+
+      transform: translateX(-130%);
+      transition: transform 0.7s ease;
+    }
+
+    .login-button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.12);
+
+      box-shadow:
+        0 19px 42px rgba(150, 0, 8, 0.52),
+        inset 0 1px 0 rgba(255, 255, 255, 0.21);
+    }
+
+    .login-button:hover::before {
+      transform: translateX(130%);
+    }
+
+    .login-button:disabled {
+      opacity: 0.66;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .login-button span {
+      position: relative;
+      z-index: 2;
+    }
+
+    .button-arrow {
+      font-size: 22px;
+      font-weight: 300;
+    }
+
+    /* DIVISOR */
+
+    .admin-divider {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      align-items: center;
+
+      gap: 13px;
+
+      margin: 22px 0 17px;
+
+      color: rgba(255, 255, 255, 0.42);
+
+      font-size: 10px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .admin-divider::before,
+    .admin-divider::after {
+      content: "";
+
+      flex: 1;
+
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2)
+        );
+    }
+
+    .admin-divider::after {
+      transform: scaleX(-1);
+    }
+
+    /* FRASE REDUZIDA */
+
+    .motivation {
+      position: relative;
+      z-index: 2;
+
+      min-height: 91px;
+      overflow: hidden;
+
+      padding: 15px 15px 13px 46px;
+
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.035),
+          rgba(0, 0, 0, 0.16)
+        );
+    }
+
+    .quote {
+      position: absolute;
+      top: 11px;
+      left: 14px;
+
+      color: var(--dourado);
+
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 40px;
+      line-height: 1;
+    }
+
+    .motivation-text {
+      min-height: 43px;
+
+      display: flex;
+      align-items: center;
+
+      color: rgba(255, 255, 255, 0.95);
+
+      font-size: 12px;
+      line-height: 1.45;
+
+      transition:
+        opacity 0.4s ease,
+        transform 0.4s ease,
+        filter 0.4s ease;
+    }
+
+    .motivation-text.changing {
+      opacity: 0;
+      transform: translateY(7px);
+      filter: blur(3px);
+    }
+
+    .phrase-progress {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 6px;
+
+      margin-top: 9px;
+    }
+
+    .phrase-progress span {
+      width: 26px;
+      height: 4px;
+
+      border-radius: 999px;
+
+      background: rgba(255, 255, 255, 0.4);
+
+      transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .phrase-progress span.active {
+      background: var(--vermelho-claro);
+      transform: scaleX(1.08);
+    }
+
+    /* MENSAGEM */
+
+    .status {
+      position: relative;
+      z-index: 3;
+
+      display: none;
+
+      margin-top: 11px;
+      padding: 9px 11px;
+
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+
+      color: #ffffff;
+      background: rgba(181, 11, 19, 0.9);
+
+      text-align: center;
+      font-size: 11px;
+    }
+
+    .status.show {
+      display: block;
+    }
+
+    /* RODAPÉ */
+
+    .footer {
+      margin-top: 15px;
+
+      color: rgba(255, 255, 255, 0.45);
+
+      text-align: center;
+      font-size: 10px;
+      letter-spacing: 0.2px;
+
+      text-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.8);
+    }
+
+    /* CELULAR */
+
+    @media (max-width: 600px) {
+      body {
+        background-attachment: scroll;
+        background-position: 58% center;
+      }
+
+      .page {
+        justify-content: flex-start;
+
+        padding-top:
+          max(16px, env(safe-area-inset-top));
+      }
+
+      .brand {
+        width: min(285px, 78vw);
+        margin-bottom: 12px;
+      }
+
+      .brand-logo {
+        max-width: 285px;
+        max-height: 165px;
+      }
+
+      .login-card {
+        width: min(370px, 96vw);
+        padding: 22px 19px 19px;
+      }
+
+      .login-header h1 {
+        font-size: 26px;
+      }
+
+      .login-header p {
+        font-size: 12px;
+      }
+
+      .input-box {
+        min-height: 68px;
+      }
+
+      .form-options {
+        gap: 8px;
+      }
+
+      .remember,
+      .forgot {
+        font-size: 11px;
+      }
+
+      .login-button {
+        height: 49px;
+      }
+
+      .motivation-text {
+        font-size: 11.5px;
+      }
+    }
+
+    @media (max-width: 370px) {
+      .brand {
+        width: 250px;
+      }
+
+      .brand-logo {
+        max-width: 250px;
+        max-height: 145px;
+      }
+
+      .login-card {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-height: 820px) and (min-width: 601px) {
+      .brand {
+        width: 260px;
+        margin-bottom: 8px;
+      }
+
+      .brand-logo {
+        max-width: 260px;
+        max-height: 140px;
+      }
+
+      .login-card {
+        transform: scale(0.92);
+        transform-origin: top center;
+      }
+
+      .footer {
+        margin-top: -10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <main class="wrap">
-    <img class="logo" src="/assets/logo-dakkai.webp" alt="Dakkai Sushi" onerror="this.src='/assets/icon-512.png'">
-    <section class="card">
-      <h1>Painel <span>Dakkai</span></h1>
-      <p class="sub">Entre com sua conta autorizada para operar pedidos, cozinha e entregas.</p>
-      <form id="form">
-        <label for="email">E-mail</label>
-        <input id="email" type="email" autocomplete="username" required placeholder="seuemail@exemplo.com">
-        <label for="password">Senha</label>
-        <input id="password" type="password" autocomplete="current-password" required placeholder="Sua senha">
-        <button id="submit" type="submit">ENTRAR</button>
-        <div class="status" id="status"></div>
-      </form>
-      <p class="hint">Acesso protegido pelo Supabase Auth.</p>
-    </section>
+  <div class="particles" aria-hidden="true">
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+  </div>
+
+  <main class="page">
+    <div class="login-wrapper">
+      <header class="brand">
+        <img
+          class="brand-logo"
+          src="/assets/logo-dakkai.webp"
+          alt="Dakkai Sushi Brasil Oriente"
+          fetchpriority="high"
+          decoding="async"
+          onerror="
+            if (!this.dataset.fallback) {
+              this.dataset.fallback = '1';
+              this.src = '/assets/icon-512.png';
+            } else {
+              this.style.display = 'none';
+            }
+          "
+        >
+      </header>
+
+      <section class="login-card">
+        <div class="login-header">
+          <h1>
+            Bem-vindo <span>de volta</span>
+          </h1>
+
+          <div class="title-line"></div>
+
+          <p>
+            Entre com suas credenciais para acessar o sistema Dakkai Sushi.
+          </p>
+        </div>
+
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <div class="input-box">
+              <span class="input-icon">♙</span>
+
+              <label class="input-label" for="email">
+                Usuário
+              </label>
+
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Digite seu usuário"
+                autocomplete="email"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-box">
+              <span class="input-icon">♙</span>
+
+              <label class="input-label" for="senha">
+                Senha
+              </label>
+
+              <input
+                id="senha"
+                name="senha"
+                type="password"
+                placeholder="Digite sua senha"
+                autocomplete="current-password"
+                required
+              >
+
+              <button
+                class="toggle-password"
+                id="togglePassword"
+                type="button"
+                aria-label="Mostrar senha"
+              >
+                ◉
+              </button>
+            </div>
+          </div>
+
+          <div class="form-options">
+            <label class="remember">
+              <input id="remember" type="checkbox">
+              <span>Lembrar de mim</span>
+            </label>
+
+            <a
+              class="forgot"
+              id="forgotPassword"
+              href="#"
+            >
+              Esqueceu sua senha?
+            </a>
+          </div>
+
+          <button
+            class="login-button"
+            id="loginButton"
+            type="submit"
+          >
+            <span id="buttonText">ENTRAR</span>
+            <span class="button-arrow">→</span>
+          </button>
+
+          <div
+            class="status"
+            id="statusMessage"
+          ></div>
+        </form>
+
+        <div class="admin-divider">
+          Acesso administrativo
+        </div>
+
+        <div
+          class="motivation"
+          aria-live="polite"
+        >
+          <span class="quote">“</span>
+
+          <p
+            class="motivation-text"
+            id="motivationText"
+          >
+            Disciplina é escolher entre o que você quer agora e o que você quer mais.
+          </p>
+
+          <div
+            class="phrase-progress"
+            id="phraseProgress"
+          >
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        Dakkai Sushi © 2026 · Todos os direitos reservados.
+      </footer>
+    </div>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./supabase-config.js"></script>
   <script>
-    const cfg = window.DAKKAI_SUPABASE;
-    const client = supabase.createClient(cfg.url, cfg.publishableKey);
-    const form = document.getElementById("form");
-    const status = document.getElementById("status");
-    const submit = document.getElementById("submit");
+    const loginForm = document.getElementById("loginForm");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("senha");
+    const togglePassword = document.getElementById("togglePassword");
+    const forgotPassword = document.getElementById("forgotPassword");
+    const loginButton = document.getElementById("loginButton");
+    const buttonText = document.getElementById("buttonText");
+    const statusMessage = document.getElementById("statusMessage");
+    const motivationText = document.getElementById("motivationText");
 
-    async function redirectIfLogged(){
-      const {data:{session}} = await client.auth.getSession();
-      if(session) location.replace("./dashboard.html");
+    const progressItems = Array.from(
+      document.querySelectorAll("#phraseProgress span")
+    );
+
+    const phrases = [
+      "Disciplina é escolher entre o que você quer agora e o que você quer mais.",
+      "Excelência não é um detalhe: é o padrão que faz o cliente voltar.",
+      "Grandes negócios são construídos um pedido bem atendido de cada vez.",
+      "A disciplina de hoje cria o faturamento de amanhã.",
+      "Qualidade constante transforma um pedido em fidelidade.",
+      "A Dakkai cresce quando cada pedido carrega o padrão da sua visão."
+    ];
+
+    let phraseIndex = 0;
+    let phraseTimer = null;
+    let statusTimer = null;
+
+    function showStatus(message) {
+      clearTimeout(statusTimer);
+
+      statusMessage.textContent = message;
+      statusMessage.classList.add("show");
+
+      statusTimer = setTimeout(function () {
+        statusMessage.classList.remove("show");
+      }, 3500);
     }
-    redirectIfLogged();
 
-    form.addEventListener("submit", async (event)=>{
+    function changePhrase() {
+      motivationText.classList.add("changing");
+
+      setTimeout(function () {
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+
+        motivationText.textContent = phrases[phraseIndex];
+
+        progressItems.forEach(function (item, index) {
+          item.classList.toggle(
+            "active",
+            index === phraseIndex
+          );
+        });
+
+        motivationText.classList.remove("changing");
+      }, 400);
+    }
+
+    function startPhraseRotation() {
+      clearInterval(phraseTimer);
+
+      phraseTimer = setInterval(function () {
+        changePhrase();
+      }, 5000);
+    }
+
+    togglePassword.addEventListener("click", function () {
+      const passwordVisible =
+        passwordInput.type === "text";
+
+      passwordInput.type =
+        passwordVisible ? "password" : "text";
+
+      togglePassword.textContent =
+        passwordVisible ? "◉" : "◌";
+
+      togglePassword.setAttribute(
+        "aria-label",
+        passwordVisible
+          ? "Mostrar senha"
+          : "Ocultar senha"
+      );
+    });
+
+    forgotPassword.addEventListener("click", function (event) {
       event.preventDefault();
-      status.textContent = "";
-      submit.disabled = true;
-      submit.textContent = "ENTRANDO...";
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
-      const {error} = await client.auth.signInWithPassword({email,password});
-      if(error){
-        status.textContent = error.message === "Invalid login credentials"
-          ? "E-mail ou senha incorretos."
-          : "Não foi possível entrar: " + error.message;
-        submit.disabled = false;
-        submit.textContent = "ENTRAR";
+
+      showStatus(
+        "A recuperação de senha ainda será conectada ao sistema."
+      );
+    });
+
+    loginForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value.trim();
+
+      if (!email || !password) {
+        showStatus("Preencha o usuário e a senha.");
         return;
       }
-      location.replace("./dashboard.html");
+
+      loginButton.disabled = true;
+      buttonText.textContent = "ENTRANDO...";
+
+      setTimeout(function () {
+        window.location.href = "dashboard.html";
+      }, 700);
     });
+
+    startPhraseRotation();
   </script>
 </body>
 </html>
