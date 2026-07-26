@@ -1,1 +1,171 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Dakkai Sistema | Dashboard</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,Arial,sans-serif;
+}
+
+body{
+background:#0b0b0b;
+color:#fff;
+display:flex;
+height:100vh;
+overflow:hidden;
+}
+
+aside{
+width:260px;
+background:#121212;
+border-right:1px solid rgba(255,255,255,.08);
+padding:25px;
+}
+
+.logo{
+text-align:center;
+font-size:28px;
+font-weight:700;
+margin-bottom:40px;
+color:#fff;
+}
+
+.logo span{
+color:#c40000;
+}
+
+.menu a{
+display:block;
+padding:15px;
+margin-bottom:10px;
+border-radius:12px;
+text-decoration:none;
+color:#ddd;
+transition:.25s;
+}
+
+.menu a:hover{
+background:#c40000;
+color:#fff;
+}
+
+main{
+flex:1;
+padding:40px;
+overflow:auto;
+}
+
+.topo{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:35px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.card{
+background:#181818;
+padding:25px;
+border-radius:18px;
+border:1px solid rgba(255,255,255,.05);
+}
+
+.card h2{
+font-size:16px;
+color:#aaa;
+margin-bottom:10px;
+}
+
+.numero{
+font-size:34px;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<aside>
+
+<div class="logo">
+DAKKAI <span>SISTEMA</span>
+</div>
+
+<div class="menu">
+
+<a href="#">🏠 Dashboard</a>
+
+<a href="#">🍣 Pedidos</a>
+
+<a href="#">👨‍🍳 Cozinha</a>
+
+<a href="#">📦 Estoque</a>
+
+<a href="#">💰 Financeiro</a>
+
+<a href="#">👥 Clientes</a>
+
+<a href="#">📊 Relatórios</a>
+
+<a href="#">⚙ Configurações</a>
+
+</div>
+
+</aside>
+
+<main>
+
+<div class="topo">
+
+<h1>Painel Administrativo</h1>
+
+<div>
+Bem-vindo ao Dakkai Sistema
+</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h2>Pedidos Hoje</h2>
+<div class="numero">0</div>
+</div>
+
+<div class="card">
+<h2>Em Produção</h2>
+<div class="numero">0</div>
+</div>
+
+<div class="card">
+<h2>Clientes</h2>
+<div class="numero">0</div>
+</div>
+
+<div class="card">
+<h2>Faturamento</h2>
+<div class="numero">R$ 0,00</div>
+</div>
+
+</div>
+
+</main>
+
+</body>
+</html>
