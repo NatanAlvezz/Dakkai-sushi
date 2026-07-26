@@ -4,134 +4,270 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#080808">
-  <title>Dakkai Sushi | Dashboard</title>
-  <style>
-    :root{--bg:#080808;--panel:#121212;--line:rgba(255,255,255,.1);--gold:#d6a445;--red:#c81720;--green:#3fc881;--muted:rgba(255,255,255,.57)}
-    *{box-sizing:border-box;margin:0;padding:0} body{min-height:100vh;background:radial-gradient(circle at 85% 0,rgba(183,14,23,.14),transparent 25%),var(--bg);color:#fff;font-family:Arial,Helvetica,sans-serif}
-    button,select{font:inherit}.layout{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
-    aside{border-right:1px solid var(--line);background:#0c0c0c;padding:16px;position:sticky;top:0;height:100vh}
-    .logo{width:145px;max-height:60px;object-fit:contain;margin:0 0 24px}
-    nav button,.logout{width:100%;height:44px;border:0;border-radius:11px;color:rgba(255,255,255,.7);background:transparent;text-align:left;padding:0 13px;margin:3px 0;cursor:pointer}
-    nav button.active{color:#fff;background:linear-gradient(90deg,rgba(183,14,23,.3),rgba(183,14,23,.06));box-shadow:inset 3px 0 var(--red)}
-    .logout{position:absolute;bottom:16px;left:16px;width:calc(100% - 32px);color:#fff;border:1px solid rgba(223,32,41,.25);text-align:center;background:rgba(183,14,23,.08)}
-    main{min-width:0}.top{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--line);background:rgba(8,8,8,.85);position:sticky;top:0;z-index:5;backdrop-filter:blur(15px)}
-    h1{font:400 23px Georgia,serif} h1 span{color:var(--gold)} .user{font-size:12px;color:var(--muted)}
-    .content{padding:22px;max-width:1600px;margin:auto}.welcome{margin-bottom:18px}.welcome h2{font:400 25px Georgia,serif}.welcome h2 span{color:var(--gold)}.welcome p{color:var(--muted);font-size:12px;margin-top:6px}
-    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:16px}.metric,.panel{border:1px solid var(--line);border-radius:17px;background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.015));box-shadow:0 18px 45px rgba(0,0,0,.18)}
-    .metric{padding:17px;min-height:115px}.metric small{color:var(--muted)}.metric strong{display:block;font:400 27px Georgia,serif;margin-top:15px}
-    .grid{display:grid;grid-template-columns:1.6fr .7fr;gap:16px}.panel{overflow:hidden}.head{padding:16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.head h3{font-size:13px}.head span{font-size:10px;color:var(--muted)}
-    .orders{padding:8px}.order{display:grid;grid-template-columns:90px 1fr 90px 115px 145px;gap:10px;align-items:center;padding:12px 9px;border-bottom:1px solid rgba(255,255,255,.055)}
-    .order:last-child{border-bottom:0}.order strong{font-size:11px}.order small{display:block;color:var(--muted);font-size:9px;margin-top:4px}.source{font-size:9px;font-weight:800;text-transform:uppercase;color:var(--gold)}
-    select{height:34px;border:1px solid var(--line);border-radius:9px;color:#fff;background:#171717;padding:0 8px;font-size:9px}
-    .empty,.loading{padding:40px 18px;text-align:center;color:var(--muted);font-size:12px}.sidebox{padding:15px}.statusline{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:10px}.ok{color:var(--green)}
-    .toast{position:fixed;right:20px;bottom:20px;max-width:340px;padding:14px 16px;border:1px solid rgba(214,164,69,.3);border-radius:13px;background:#15120f;transform:translateY(130%);opacity:0;transition:.3s;z-index:10;font-size:11px}.toast.show{transform:none;opacity:1}
-    @media(max-width:1000px){.metrics{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.layout{grid-template-columns:1fr}aside{display:none}.order{grid-template-columns:80px 1fr 75px 120px}.pay{display:none}}
-    @media(max-width:600px){.content{padding:14px 10px}.top{padding:0 12px}.metrics{grid-template-columns:1fr 1fr}.order{grid-template-columns:1fr auto}.customer,.pay{display:none}.order select{grid-column:1/-1}.metric strong{font-size:22px}}
-  </style>
+  <title>Dakkai Sushi | Central Operacional</title>
+  <link rel="stylesheet" href="./dashboard.css">
 </head>
 <body>
-<div class="layout">
-  <aside>
-    <img class="logo" src="/assets/logo-dakkai.webp" alt="Dakkai Sushi" onerror="this.src='/assets/icon-512.png'">
-    <nav><button class="active">Dashboard</button><button>Pedidos</button><button>Cozinha</button><button>Entregas</button><button>Produtos</button><button>Clientes</button><button>Relatórios</button></nav>
-    <button class="logout" id="logout">Sair do sistema</button>
-  </aside>
-  <main>
-    <header class="top"><h1>Painel <span>Dakkai</span></h1><div class="user" id="user">Conectando...</div></header>
-    <section class="content">
-      <div class="welcome"><h2>Operação em <span>tempo real</span></h2><p>Pedidos do site, iFood, WhatsApp e balcão em um único painel.</p></div>
-      <div class="metrics">
-        <article class="metric"><small>Pedidos hoje</small><strong id="mOrders">0</strong></article>
-        <article class="metric"><small>Faturamento hoje</small><strong id="mRevenue">R$ 0,00</strong></article>
-        <article class="metric"><small>Em preparação</small><strong id="mPreparing">0</strong></article>
-        <article class="metric"><small>Em entrega</small><strong id="mDelivery">0</strong></article>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <img src="/assets/logo-dakkai.webp" alt="Dakkai Sushi" onerror="this.src='/assets/icon-512.png'">
+        <button class="sidebar-collapse" id="sidebarCollapse" type="button" aria-label="Recolher menu">‹</button>
       </div>
-      <div class="grid">
-        <article class="panel">
-          <div class="head"><div><h3>Pedidos recentes</h3><span>Atualização automática pelo Supabase</span></div><span id="updated">—</span></div>
-          <div class="orders" id="orders"><div class="loading">Carregando pedidos...</div></div>
-        </article>
-        <article class="panel">
-          <div class="head"><div><h3>Integrações</h3><span>Status operacional</span></div></div>
-          <div class="sidebox">
-            <div class="statusline"><span>Supabase</span><strong class="ok">ONLINE</strong></div>
-            <div class="statusline"><span>Site Dakkai</span><strong class="ok">PRONTO</strong></div>
-            <div class="statusline"><span>Realtime</span><strong class="ok">ATIVO</strong></div>
-            <div class="statusline"><span>iFood</span><strong style="color:#f29e46">AGUARDA CREDENCIAIS</strong></div>
+
+      <nav class="sidebar-nav" aria-label="Menu principal">
+        <button class="nav-item active" type="button" data-module="dashboard">
+          <span class="nav-icon">⌂</span><span class="nav-label">Dashboard</span>
+        </button>
+        <button class="nav-item" type="button" data-module="orders">
+          <span class="nav-icon">▤</span><span class="nav-label">Pedidos</span>
+          <span class="nav-badge" id="sidebarOrdersBadge">0</span>
+        </button>
+        <button class="nav-item" type="button" data-module="kitchen">
+          <span class="nav-icon">♨</span><span class="nav-label">Cozinha</span>
+        </button>
+        <button class="nav-item" type="button" data-module="delivery">
+          <span class="nav-icon">➜</span><span class="nav-label">Delivery</span>
+        </button>
+        <button class="nav-item" type="button" data-module="cashier">
+          <span class="nav-icon">R$</span><span class="nav-label">Caixa</span>
+        </button>
+        <button class="nav-item" type="button" data-module="products">
+          <span class="nav-icon">◇</span><span class="nav-label">Produtos</span>
+        </button>
+        <button class="nav-item" type="button" data-module="customers">
+          <span class="nav-icon">◎</span><span class="nav-label">Clientes</span>
+        </button>
+        <button class="nav-item" type="button" data-module="team">
+          <span class="nav-icon">♙</span><span class="nav-label">Equipe</span>
+        </button>
+        <button class="nav-item" type="button" data-module="finance">
+          <span class="nav-icon">↗</span><span class="nav-label">Financeiro</span>
+        </button>
+        <button class="nav-item" type="button" data-module="reports">
+          <span class="nav-icon">▥</span><span class="nav-label">Relatórios</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <button class="nav-item" type="button" data-module="settings">
+          <span class="nav-icon">⚙</span><span class="nav-label">Configurações</span>
+        </button>
+        <button class="logout-button" id="logoutButton" type="button">
+          <span>⇥</span><span class="nav-label">Sair do sistema</span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Abrir menu">☰</button>
+          <div>
+            <span class="eyebrow">CENTRAL OPERACIONAL</span>
+            <h1>Dakkai <span>Sushi</span></h1>
           </div>
-        </article>
+        </div>
+
+        <div class="topbar-center">
+          <label class="global-search">
+            <span>⌕</span>
+            <input id="globalSearch" type="search" placeholder="Buscar pedido, cliente ou telefone">
+            <kbd>Ctrl K</kbd>
+          </label>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="icon-button" id="soundButton" type="button" title="Som de novos pedidos">◉</button>
+          <button class="icon-button notification-button" id="notificationButton" type="button" title="Notificações">
+            ♢ <span class="notification-dot" id="notificationDot"></span>
+          </button>
+          <div class="profile">
+            <div class="profile-avatar" id="profileAvatar">NA</div>
+            <div class="profile-copy">
+              <strong id="profileName">Administrador</strong>
+              <span id="profileEmail">Conectando...</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="page-content">
+        <div class="hero-row">
+          <div>
+            <span class="section-kicker" id="todayLabel">HOJE</span>
+            <h2>Boa operação, <span id="greetingName">Natan.</span></h2>
+            <p>Visão completa da loja, cozinha, entregas e faturamento em tempo real.</p>
+          </div>
+          <div class="hero-actions">
+            <div class="store-status">
+              <span class="status-led"></span>
+              <div><strong>Loja online</strong><small>Recebendo pedidos</small></div>
+            </div>
+            <button class="primary-button" id="newOrderButton" type="button"><span>＋</span>Novo pedido</button>
+          </div>
+        </div>
+
+        <section class="metrics-grid">
+          <article class="metric-card metric-red">
+            <div class="metric-head"><span class="metric-icon">▤</span><span class="metric-trend">Hoje</span></div>
+            <strong id="metricOrders">0</strong>
+            <span>Pedidos recebidos</span>
+            <small id="metricOrdersCaption">Nenhum pedido hoje</small>
+          </article>
+          <article class="metric-card metric-gold">
+            <div class="metric-head"><span class="metric-icon">R$</span><span class="metric-trend">Vendas</span></div>
+            <strong id="metricRevenue">R$ 0,00</strong>
+            <span>Faturamento do dia</span>
+            <small id="metricTicket">Ticket médio R$ 0,00</small>
+          </article>
+          <article class="metric-card metric-orange">
+            <div class="metric-head"><span class="metric-icon">♨</span><span class="metric-trend">Agora</span></div>
+            <strong id="metricPreparing">0</strong>
+            <span>Em preparação</span>
+            <small id="metricKitchenCaption">Cozinha sob controle</small>
+          </article>
+          <article class="metric-card metric-green">
+            <div class="metric-head"><span class="metric-icon">➜</span><span class="metric-trend">Delivery</span></div>
+            <strong id="metricDelivery">0</strong>
+            <span>Entregas em rota</span>
+            <small id="metricReadyCaption">0 pedidos prontos</small>
+          </article>
+        </section>
+
+        <section class="dashboard-layout">
+          <div class="main-column">
+            <article class="panel orders-panel">
+              <header class="panel-header">
+                <div class="panel-title">
+                  <span class="panel-icon">▤</span>
+                  <div><h3>Pedidos em tempo real</h3><p>Todos os canais reunidos em uma única operação</p></div>
+                </div>
+                <div class="panel-tools">
+                  <select id="statusFilter" aria-label="Filtrar pedidos">
+                    <option value="all">Todos os status</option>
+                    <option value="new">Novos</option>
+                    <option value="confirmed">Confirmados</option>
+                    <option value="preparing">Preparando</option>
+                    <option value="ready">Prontos</option>
+                    <option value="out_for_delivery">Em entrega</option>
+                    <option value="completed">Finalizados</option>
+                    <option value="cancelled">Cancelados</option>
+                  </select>
+                  <button class="ghost-button" id="refreshButton" type="button">Atualizar</button>
+                </div>
+              </header>
+
+              <div class="orders-table-head">
+                <span>Pedido</span><span>Cliente</span><span>Canal</span><span>Valor</span><span>Status</span><span></span>
+              </div>
+              <div class="orders-list" id="ordersList">
+                <div class="loading-state"><span class="loader"></span><p>Carregando operação Dakkai...</p></div>
+              </div>
+            </article>
+
+            <article class="panel">
+              <header class="panel-header">
+                <div class="panel-title">
+                  <span class="panel-icon">♨</span>
+                  <div><h3>Fluxo inteligente da cozinha</h3><p>Do pedido recebido até a expedição</p></div>
+                </div>
+                <span class="live-label"><i></i>Tempo real</span>
+              </header>
+
+              <div class="kitchen-board">
+                <section class="kitchen-column">
+                  <div class="kitchen-column-head"><span>Recebidos</span><b id="countReceived">0</b></div>
+                  <div class="kitchen-cards" id="kitchenReceived"></div>
+                </section>
+                <section class="kitchen-column">
+                  <div class="kitchen-column-head preparing"><span>Preparando</span><b id="countPreparing">0</b></div>
+                  <div class="kitchen-cards" id="kitchenPreparing"></div>
+                </section>
+                <section class="kitchen-column">
+                  <div class="kitchen-column-head ready"><span>Prontos</span><b id="countReady">0</b></div>
+                  <div class="kitchen-cards" id="kitchenReady"></div>
+                </section>
+              </div>
+            </article>
+          </div>
+
+          <aside class="right-column">
+            <article class="panel operation-panel">
+              <header class="panel-header compact">
+                <div class="panel-title">
+                  <span class="panel-icon">◈</span>
+                  <div><h3>Pulso da operação</h3><p>Status dos serviços</p></div>
+                </div>
+              </header>
+              <div class="operation-list">
+                <div class="operation-item"><span class="service-icon">DB</span><div><strong>Supabase</strong><small>Banco e autenticação</small></div><b class="online">Online</b></div>
+                <div class="operation-item"><span class="service-icon">RT</span><div><strong>Realtime</strong><small>Pedidos instantâneos</small></div><b class="online">Ativo</b></div>
+                <div class="operation-item"><span class="service-icon">WEB</span><div><strong>Site Dakkai</strong><small>Canal próprio</small></div><b class="online">Pronto</b></div>
+                <div class="operation-item"><span class="service-icon">IF</span><div><strong>iFood</strong><small>API oficial</small></div><b class="pending">Pendente</b></div>
+              </div>
+            </article>
+
+            <article class="panel ai-panel">
+              <header class="panel-header compact">
+                <div class="panel-title">
+                  <span class="panel-icon ai-icon">IA</span>
+                  <div><h3>Inteligência Dakkai</h3><p>Leitura automática da operação</p></div>
+                </div>
+              </header>
+              <div class="ai-body">
+                <div class="ai-orbit"><span>大</span></div>
+                <div class="ai-message">
+                  <strong id="aiTitle">Analisando o movimento</strong>
+                  <p id="aiSummary">Assim que os pedidos entrarem, a IA apresentará alertas sobre volume, atrasos, ticket médio e oportunidades.</p>
+                </div>
+                <div class="ai-actions">
+                  <button type="button" data-ai="sales">Analisar vendas</button>
+                  <button type="button" data-ai="kitchen">Ritmo da cozinha</button>
+                  <button type="button" data-ai="customers">Clientes recorrentes</button>
+                  <button type="button" data-ai="suggestions">Sugestões do dia</button>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel quick-panel">
+              <header class="panel-header compact">
+                <div class="panel-title">
+                  <span class="panel-icon">⚡</span>
+                  <div><h3>Acesso rápido</h3><p>Ações frequentes</p></div>
+                </div>
+              </header>
+              <div class="quick-grid">
+                <button type="button" data-quick="new-order"><span>＋</span>Novo pedido</button>
+                <button type="button" data-quick="products"><span>◇</span>Produtos</button>
+                <button type="button" data-quick="cashier"><span>R$</span>Caixa</button>
+                <button type="button" data-quick="reports"><span>▥</span>Relatórios</button>
+              </div>
+            </article>
+          </aside>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="orderModal">
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <header><div><span class="section-kicker">PEDIDO MANUAL</span><h3 id="modalTitle">Novo pedido</h3></div><button id="closeModalButton" type="button">×</button></header>
+      <div class="modal-placeholder">
+        <span>次</span>
+        <h4>Próximo módulo</h4>
+        <p>A tela completa de novo pedido será criada junto com o módulo Pedidos, incluindo cliente, itens, adicionais, pagamento e entrega.</p>
       </div>
+      <button class="primary-button full" id="closeModalFooter" type="button">Entendi</button>
     </section>
-  </main>
-</div>
-<div class="toast" id="toast"></div>
+  </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="./supabase-config.js"></script>
-<script>
-  const cfg=window.DAKKAI_SUPABASE;
-  const db=supabase.createClient(cfg.url,cfg.publishableKey);
-  const ordersEl=document.getElementById("orders");
-  const toast=document.getElementById("toast");
-  const statusLabels={new:"Novo pedido",confirmed:"Confirmado",preparing:"Em preparação",ready:"Pronto",out_for_delivery:"Saiu para entrega",completed:"Finalizado",cancelled:"Cancelado"};
-  const sourceLabels={site:"Site",ifood:"iFood",whatsapp:"WhatsApp",counter:"Balcão",phone:"Telefone",app:"App"};
-  const money=new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"});
+  <div class="toast" id="toast"><span id="toastIcon">✓</span><div><strong id="toastTitle">Tudo certo</strong><p id="toastMessage">Operação atualizada.</p></div></div>
 
-  function notify(msg){toast.textContent=msg;toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),3000)}
-  function ago(date){const min=Math.max(0,Math.floor((Date.now()-new Date(date))/60000));return min<1?"Agora":min<60?`Há ${min} min`:`Há ${Math.floor(min/60)} h`}
-  function options(current){return Object.entries(statusLabels).map(([v,l])=>`<option value="${v}" ${v===current?"selected":""}>${l}</option>`).join("")}
-  function safe(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-
-  async function requireSession(){
-    const {data:{session}}=await db.auth.getSession();
-    if(!session){location.replace("./index.html");return null}
-    document.getElementById("user").textContent=session.user.email;
-    return session;
-  }
-
-  async function load(){
-    const start=new Date(); start.setHours(0,0,0,0);
-    const {data,error}=await db.from("orders").select("id,order_number,customer_name,customer_phone,type,status,payment_method,total,source,placed_at,delivery_address").order("placed_at",{ascending:false}).limit(40);
-    if(error){ordersEl.innerHTML=`<div class="empty">Erro ao carregar: ${safe(error.message)}</div>`;return}
-    const today=data.filter(o=>new Date(o.placed_at)>=start);
-    document.getElementById("mOrders").textContent=today.length;
-    document.getElementById("mRevenue").textContent=money.format(today.filter(o=>o.status!=="cancelled").reduce((s,o)=>s+Number(o.total||0),0));
-    document.getElementById("mPreparing").textContent=data.filter(o=>o.status==="preparing").length;
-    document.getElementById("mDelivery").textContent=data.filter(o=>o.status==="out_for_delivery").length;
-    document.getElementById("updated").textContent=new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});
-    if(!data.length){ordersEl.innerHTML='<div class="empty">Nenhum pedido real recebido ainda.</div>';return}
-    ordersEl.innerHTML=data.map(o=>{
-      const address=o.type==="delivery"?(o.delivery_address?.neighborhood||"Entrega"):(o.type==="pickup"?"Retirada":"Salão");
-      return `<div class="order" data-id="${o.id}">
-        <div><strong>#DK-${String(o.order_number).padStart(4,"0")}</strong><small>${ago(o.placed_at)}</small></div>
-        <div class="customer"><strong>${safe(o.customer_name||"Cliente")}</strong><small>${safe(address)}</small></div>
-        <div class="source">${safe(sourceLabels[o.source]||o.source||"Sistema")}</div>
-        <div class="pay"><strong>${money.format(Number(o.total||0))}</strong><small>${safe(o.payment_method||"Pendente")}</small></div>
-        <select class="status" data-id="${o.id}">${options(o.status)}</select>
-      </div>`;
-    }).join("");
-    document.querySelectorAll(".status").forEach(el=>el.addEventListener("change",changeStatus));
-  }
-
-  async function changeStatus(e){
-    e.target.disabled=true;
-    const {error}=await db.from("orders").update({status:e.target.value}).eq("id",e.target.dataset.id);
-    e.target.disabled=false;
-    if(error){notify("Erro ao atualizar: "+error.message);await load();return}
-    notify("Status atualizado com sucesso.");
-  }
-
-  document.getElementById("logout").addEventListener("click",async()=>{await db.auth.signOut();location.replace("./index.html")});
-
-  (async()=>{
-    if(!await requireSession())return;
-    await load();
-    db.channel("dakkai-orders-live")
-      .on("postgres_changes",{event:"*",schema:"public",table:"orders"},payload=>{
-        if(payload.eventType==="INSERT")notify("Novo pedido recebido!");
-        load();
-      }).subscribe();
-  })();
-</script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./supabase-config.js"></script>
+  <script src="./dashboard.js"></script>
 </body>
 </html>
