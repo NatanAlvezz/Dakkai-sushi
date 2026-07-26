@@ -1,120 +1,797 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta charset="UTF-8">
 
-<title>Dakkai Sistema</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
-}
+  <meta name="theme-color" content="#080808">
 
-body{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:
-linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.65)),
-url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1800&q=80');
-background-size:cover;
-background-position:center;
-}
+  <title>Dakkai Sistema | Acesso Administrativo</title>
 
-.login{
-width:420px;
-background:rgba(10,10,10,.82);
-backdrop-filter:blur(18px);
-border:1px solid rgba(255,255,255,.08);
-border-radius:20px;
-padding:45px;
-box-shadow:0 30px 80px rgba(0,0,0,.6);
-}
+  <style>
+    :root {
+      --vermelho: #b40b12;
+      --vermelho-claro: #e01b24;
+      --dourado: #d4aa60;
+      --branco: #ffffff;
+      --cinza: #b9b9b9;
+      --fundo-card: rgba(9, 9, 9, 0.82);
+      --borda: rgba(255, 255, 255, 0.12);
+    }
 
-.logo{
-width:230px;
-display:block;
-margin:auto;
-margin-bottom:35px;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-h1{
-color:white;
-text-align:center;
-font-size:30px;
-margin-bottom:10px;
-}
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
 
-p{
-color:#bbb;
-text-align:center;
-margin-bottom:30px;
-}
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
 
-input{
-width:100%;
-padding:16px;
-margin-bottom:18px;
-background:#1b1b1b;
-border:none;
-border-radius:10px;
-color:white;
-font-size:16px;
-}
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-button{
-width:100%;
-padding:16px;
-border:none;
-border-radius:10px;
-background:#b30000;
-color:white;
-font-size:17px;
-cursor:pointer;
-font-weight:bold;
-transition:.3s;
-}
+      position: relative;
+      overflow-x: hidden;
 
-button:hover{
-background:#d50000;
-}
+      padding: 32px 20px;
 
-footer{
-margin-top:25px;
-text-align:center;
-color:#999;
-font-size:13px;
-}
-</style>
+      font-family:
+        Inter,
+        Montserrat,
+        Arial,
+        Helvetica,
+        sans-serif;
 
+      color: var(--branco);
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.9) 0%,
+          rgba(0, 0, 0, 0.72) 42%,
+          rgba(0, 0, 0, 0.38) 100%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.15),
+          rgba(0, 0, 0, 0.82)
+        ),
+        url("https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=2000&q=90");
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+
+      background:
+        radial-gradient(
+          circle at 75% 45%,
+          rgba(186, 13, 20, 0.15),
+          transparent 32%
+        ),
+        linear-gradient(
+          135deg,
+          rgba(212, 170, 96, 0.06),
+          transparent 36%
+        );
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.025),
+          transparent 20%
+        );
+
+      mix-blend-mode: screen;
+    }
+
+    .page {
+      width: min(1180px, 100%);
+      min-height: 680px;
+
+      display: grid;
+      grid-template-columns: 1.1fr 460px;
+      align-items: center;
+      gap: 70px;
+
+      position: relative;
+      z-index: 1;
+    }
+
+    .presentation {
+      max-width: 620px;
+      padding: 25px 0;
+    }
+
+    .brand-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+
+      margin-bottom: 28px;
+
+      color: var(--dourado);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .brand-line::before {
+      content: "";
+      width: 45px;
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        transparent,
+        var(--dourado)
+      );
+    }
+
+    .presentation h2 {
+      max-width: 600px;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: clamp(42px, 5vw, 72px);
+      font-weight: 400;
+      line-height: 1.04;
+      letter-spacing: -2px;
+
+      text-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+    }
+
+    .presentation h2 strong {
+      display: block;
+      color: var(--dourado);
+      font-weight: 400;
+    }
+
+    .presentation-text {
+      max-width: 525px;
+
+      margin-top: 25px;
+
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .quality-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px 25px;
+
+      margin-top: 35px;
+    }
+
+    .quality-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .quality-item span {
+      width: 7px;
+      height: 7px;
+
+      display: block;
+
+      border-radius: 50%;
+      background: var(--vermelho-claro);
+      box-shadow: 0 0 16px rgba(224, 27, 36, 0.9);
+    }
+
+    .login-card {
+      width: 100%;
+
+      position: relative;
+
+      padding: 42px 40px 30px;
+
+      overflow: hidden;
+
+      border: 1px solid var(--borda);
+      border-radius: 26px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(22, 22, 22, 0.93),
+          rgba(6, 6, 6, 0.86)
+        );
+
+      box-shadow:
+        0 35px 100px rgba(0, 0, 0, 0.75),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+    }
+
+    .login-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 45px;
+      right: 45px;
+      height: 1px;
+
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--dourado),
+        transparent
+      );
+    }
+
+    .login-card::after {
+      content: "";
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      top: -120px;
+      right: -95px;
+
+      border-radius: 50%;
+
+      background: rgba(180, 11, 18, 0.16);
+      filter: blur(10px);
+    }
+
+    .logo-wrapper {
+      min-height: 118px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 17px;
+    }
+
+    .logo {
+      display: block;
+
+      width: min(260px, 90%);
+      max-height: 125px;
+
+      object-fit: contain;
+
+      filter:
+        drop-shadow(0 12px 25px rgba(0, 0, 0, 0.65))
+        drop-shadow(0 0 10px rgba(255, 255, 255, 0.08));
+    }
+
+    .login-card h1 {
+      position: relative;
+      z-index: 1;
+
+      margin-bottom: 8px;
+
+      text-align: center;
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: 30px;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+    }
+
+    .subtitle {
+      position: relative;
+      z-index: 1;
+
+      margin-bottom: 31px;
+
+      color: var(--cinza);
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group {
+      position: relative;
+      z-index: 1;
+
+      margin-bottom: 17px;
+    }
+
+    .form-group label {
+      display: block;
+
+      margin: 0 0 8px 3px;
+
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+    }
+
+    .input-area {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      top: 50%;
+      left: 16px;
+
+      transform: translateY(-50%);
+
+      color: rgba(255, 255, 255, 0.42);
+      font-size: 17px;
+      pointer-events: none;
+    }
+
+    input {
+      width: 100%;
+      height: 55px;
+
+      padding: 0 48px 0 47px;
+
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      outline: none;
+
+      color: var(--branco);
+      background: rgba(255, 255, 255, 0.055);
+
+      font-size: 15px;
+
+      transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.34);
+    }
+
+    input:focus {
+      border-color: rgba(212, 170, 96, 0.72);
+      background: rgba(255, 255, 255, 0.075);
+
+      box-shadow:
+        0 0 0 4px rgba(212, 170, 96, 0.08),
+        0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .toggle-password {
+      width: 42px;
+      height: 42px;
+
+      position: absolute;
+      top: 50%;
+      right: 7px;
+
+      transform: translateY(-50%);
+
+      border: 0;
+      border-radius: 9px;
+
+      color: rgba(255, 255, 255, 0.55);
+      background: transparent;
+
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .toggle-password:hover {
+      color: var(--branco);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .form-options {
+      position: relative;
+      z-index: 1;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+
+      margin: 4px 1px 23px;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .remember input {
+      width: 15px;
+      height: 15px;
+
+      padding: 0;
+      accent-color: var(--vermelho);
+    }
+
+    .forgot {
+      color: var(--dourado);
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .forgot:hover {
+      text-decoration: underline;
+    }
+
+    .login-button {
+      width: 100%;
+      height: 56px;
+
+      position: relative;
+      z-index: 1;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+
+      color: var(--branco);
+
+      background:
+        linear-gradient(
+          135deg,
+          #8f050b,
+          var(--vermelho),
+          #d01720
+        );
+
+      box-shadow:
+        0 15px 35px rgba(180, 11, 18, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.2s ease,
+        filter 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .login-button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.12);
+
+      box-shadow:
+        0 20px 42px rgba(180, 11, 18, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    }
+
+    .login-button:active {
+      transform: translateY(0);
+    }
+
+    .login-button span {
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    .security {
+      position: relative;
+      z-index: 1;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+
+      margin-top: 18px;
+
+      color: rgba(255, 255, 255, 0.38);
+      font-size: 11px;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+
+      margin-top: 25px;
+      padding-top: 20px;
+
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+      color: rgba(255, 255, 255, 0.38);
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 930px) {
+      body {
+        background-position: 63% center;
+      }
+
+      .page {
+        width: min(500px, 100%);
+        min-height: auto;
+
+        display: block;
+      }
+
+      .presentation {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      body {
+        align-items: flex-start;
+
+        padding:
+          max(22px, env(safe-area-inset-top))
+          14px
+          max(22px, env(safe-area-inset-bottom));
+
+        background:
+          linear-gradient(
+            rgba(0, 0, 0, 0.62),
+            rgba(0, 0, 0, 0.88)
+          ),
+          url("https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1200&q=88");
+
+        background-size: cover;
+        background-position: center;
+        background-attachment: scroll;
+      }
+
+      .login-card {
+        margin: auto;
+        padding: 31px 22px 25px;
+
+        border-radius: 21px;
+      }
+
+      .logo-wrapper {
+        min-height: 92px;
+      }
+
+      .logo {
+        width: min(220px, 85%);
+        max-height: 100px;
+      }
+
+      .login-card h1 {
+        font-size: 26px;
+      }
+
+      .subtitle {
+        margin-bottom: 25px;
+      }
+
+      input,
+      .login-button {
+        height: 53px;
+      }
+
+      .form-options {
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="login">
+  <main class="page">
 
-<img src="../assets/img/logo.png" class="logo">
+    <section class="presentation">
+      <div class="brand-line">
+        Tradição, excelência e tecnologia
+      </div>
 
-<h1>Dakkai Sistema</h1>
+      <h2>
+        Gestão de alto padrão
+        <strong>para a Dakkai Sushi.</strong>
+      </h2>
 
-<p>Gestão Inteligente para Restaurantes</p>
+      <p class="presentation-text">
+        Controle pedidos, cozinha, estoque, clientes e resultados
+        em uma única plataforma segura, moderna e inteligente.
+      </p>
 
-<input type="email" placeholder="E-mail">
+      <div class="quality-list">
+        <div class="quality-item">
+          <span></span>
+          Pedidos em tempo real
+        </div>
 
-<input type="password" placeholder="Senha">
+        <div class="quality-item">
+          <span></span>
+          Gestão de estoque
+        </div>
 
-<button>Entrar</button>
+        <div class="quality-item">
+          <span></span>
+          Controle financeiro
+        </div>
+      </div>
+    </section>
 
-<footer>
-© 2026 Dakkai Sistema
-</footer>
+    <section class="login-card">
 
-</div>
+      <div class="logo-wrapper">
+        <img
+          src="../assets/img/logo.png"
+          class="logo"
+          alt="Logo original Dakkai Sushi"
+          onerror="this.style.display='none'; document.getElementById('fallbackLogo').style.display='block';"
+        >
+
+        <div
+          id="fallbackLogo"
+          style="
+            display:none;
+            text-align:center;
+            font-family:Georgia,serif;
+            font-size:40px;
+            font-weight:bold;
+            letter-spacing:3px;
+          "
+        >
+          DAKKAI
+        </div>
+      </div>
+
+      <h1>Dakkai Sistema</h1>
+
+      <p class="subtitle">
+        Gestão inteligente para restaurantes
+      </p>
+
+      <form id="loginForm">
+
+        <div class="form-group">
+          <label for="email">E-mail</label>
+
+          <div class="input-area">
+            <span class="input-icon">✉</span>
+
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Digite seu e-mail"
+              autocomplete="email"
+              required
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="senha">Senha</label>
+
+          <div class="input-area">
+            <span class="input-icon">◆</span>
+
+            <input
+              id="senha"
+              name="senha"
+              type="password"
+              placeholder="Digite sua senha"
+              autocomplete="current-password"
+              required
+            >
+
+            <button
+              class="toggle-password"
+              id="togglePassword"
+              type="button"
+              aria-label="Mostrar ou ocultar senha"
+            >
+              ◉
+            </button>
+          </div>
+        </div>
+
+        <div class="form-options">
+          <label class="remember">
+            <input type="checkbox" id="remember">
+            Manter conectado
+          </label>
+
+          <a href="#" class="forgot">
+            Esqueci minha senha
+          </a>
+        </div>
+
+        <button class="login-button" type="submit">
+          Entrar no sistema
+          <span>→</span>
+        </button>
+
+      </form>
+
+      <div class="security">
+        🔒 Ambiente administrativo protegido
+      </div>
+
+      <footer>
+        © 2026 Dakkai Sistema · Todos os direitos reservados
+      </footer>
+
+    </section>
+
+  </main>
+
+  <script>
+    const loginForm = document.getElementById("loginForm");
+    const senha = document.getElementById("senha");
+    const togglePassword = document.getElementById("togglePassword");
+
+    togglePassword.addEventListener("click", function () {
+      const senhaVisivel = senha.type === "text";
+
+      senha.type = senhaVisivel ? "password" : "text";
+      togglePassword.textContent = senhaVisivel ? "◉" : "◌";
+    });
+
+    loginForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = senha.value.trim();
+
+      if (!email || !password) {
+        alert("Preencha o e-mail e a senha.");
+        return;
+      }
+
+      window.location.href = "dashboard.html";
+    });
+  </script>
 
 </body>
 </html>
