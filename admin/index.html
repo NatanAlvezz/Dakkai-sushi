@@ -114,9 +114,15 @@
       text-align: center;
     }
 
+    .dakkai-vector-logo {
+      overflow: visible;
+      shape-rendering: geometricPrecision;
+      text-rendering: geometricPrecision;
+    }
+
     .presentation-logo {
-      width: 118px;
-      height: 82px;
+      width: 150px;
+      height: 96px;
       flex: 0 0 auto;
       object-fit: contain;
       image-rendering: auto;
@@ -380,6 +386,61 @@
 
     .login-title { min-width: 0; text-align: center; }
 
+    .mobile-motivation {
+      display: none;
+      position: relative;
+      z-index: 1;
+      margin: 0 0 16px;
+      padding: 13px 15px 12px;
+      border: 1px solid rgba(212,170,96,.2);
+      border-radius: 13px;
+      background: rgba(255,255,255,.045);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .mobile-motivation-label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--dourado);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .mobile-motivation p {
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.9);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 14px;
+      line-height: 1.35;
+      transition: opacity .35s ease, transform .35s ease;
+    }
+
+    .mobile-motivation p.is-changing {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    .mobile-motivation-progress {
+      height: 2px;
+      margin-top: 9px;
+      border-radius: 99px;
+      overflow: hidden;
+      background: rgba(255,255,255,.08);
+    }
+
+    .mobile-motivation-progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--vermelho-claro), var(--dourado-claro));
+    }
+
     .login-title h1 {
       margin-bottom: 4px;
       font-family: Georgia, "Times New Roman", serif;
@@ -548,6 +609,7 @@
       body { background-position: 62% center; }
       .page { width: min(500px,100%); min-height: auto; display: block; }
       .presentation { display: none; }
+      .mobile-motivation { display: block; }
     }
 
     @media (max-width: 520px) {
@@ -590,11 +652,28 @@
   <main class="page">
     <section class="presentation" aria-label="Apresentação do sistema">
       <div class="presentation-top">
-        <picture>
-          <source srcset="/assets/logo-dakkai.svg" type="image/svg+xml">
-          <img src="/assets/logo-dakkai.webp" class="presentation-logo" alt="Logo Dakkai Sushi" decoding="async"
-            onerror="this.onerror=null; this.src='/assets/icon-192.png';">
-        </picture>
+        
+<svg class="presentation-logo dakkai-vector-logo" viewBox="0 0 360 210" role="img" aria-label="Dakkai Sushi">
+  <defs>
+    <linearGradient id="goldLarge" x1="0" x2="1">
+      <stop offset="0" stop-color="#f3d494"/>
+      <stop offset="0.5" stop-color="#d4aa60"/>
+      <stop offset="1" stop-color="#a9782f"/>
+    </linearGradient>
+    <filter id="shadowLarge" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000" flood-opacity=".65"/>
+    </filter>
+  </defs>
+  <g filter="url(#shadowLarge)">
+    <circle cx="180" cy="72" r="54" fill="none" stroke="#b40b12" stroke-width="10" opacity=".95"/>
+    <path d="M128 78c18-22 38-32 58-30 18 2 33 13 46 31-19-7-36-8-51-3-17 5-34 6-53 2z"
+          fill="url(#goldLarge)"/>
+    <text x="180" y="145" text-anchor="middle" font-family="Georgia,serif"
+          font-size="58" font-weight="700" letter-spacing="5" fill="url(#goldLarge)">DAKKAI</text>
+    <text x="180" y="180" text-anchor="middle" font-family="Arial,sans-serif"
+          font-size="22" font-weight="700" letter-spacing="10" fill="#ffffff">SUSHI</text>
+  </g>
+</svg>
         <div class="presentation-brand">
           <div class="brand-line">Tradição, excelência e tecnologia</div>
           <div class="brand-subline">Gestão inteligente para restaurante e delivery</div>
@@ -631,18 +710,35 @@
     <section class="login-card">
       <div class="login-heading">
         <div class="logo-wrapper">
-          <picture>
-            <source srcset="/assets/logo-dakkai.svg" type="image/svg+xml">
-            <img src="/assets/logo-dakkai.webp" class="logo" alt="Logo Dakkai Sushi" width="176" height="128"
-              decoding="async" fetchpriority="high"
-              onerror="this.onerror=null; this.src='/assets/icon-192.png';">
-          </picture>
+          
+<svg class="logo dakkai-vector-logo" viewBox="0 0 360 210" role="img" aria-label="Dakkai Sushi">
+  <defs>
+    <linearGradient id="goldSmall" x1="0" x2="1">
+      <stop offset="0" stop-color="#f3d494"/>
+      <stop offset="0.5" stop-color="#d4aa60"/>
+      <stop offset="1" stop-color="#a9782f"/>
+    </linearGradient>
+  </defs>
+  <circle cx="180" cy="72" r="54" fill="none" stroke="#b40b12" stroke-width="10"/>
+  <path d="M128 78c18-22 38-32 58-30 18 2 33 13 46 31-19-7-36-8-51-3-17 5-34 6-53 2z"
+        fill="url(#goldSmall)"/>
+  <text x="180" y="145" text-anchor="middle" font-family="Georgia,serif"
+        font-size="58" font-weight="700" letter-spacing="5" fill="url(#goldSmall)">DAKKAI</text>
+  <text x="180" y="180" text-anchor="middle" font-family="Arial,sans-serif"
+        font-size="22" font-weight="700" letter-spacing="10" fill="#ffffff">SUSHI</text>
+</svg>
         </div>
 
         <div class="login-title">
           <h1>Dakkai Sistema</h1>
           <p class="subtitle">Gestão inteligente para restaurantes</p>
         </div>
+      </div>
+
+      <div class="mobile-motivation" aria-live="polite">
+        <span class="mobile-motivation-label">Inspiração do dia</span>
+        <p id="mobileMotivationText">Grandes negócios são construídos um pedido bem atendido de cada vez.</p>
+        <div class="mobile-motivation-progress"><span id="mobileMotivationProgress"></span></div>
       </div>
 
       <form id="loginForm">
@@ -689,6 +785,8 @@
     const forgotPassword = document.getElementById("forgotPassword");
     const motivationText = document.getElementById("motivationText");
     const motivationProgress = document.getElementById("motivationProgress");
+    const mobileMotivationText = document.getElementById("mobileMotivationText");
+    const mobileMotivationProgress = document.getElementById("mobileMotivationProgress");
 
     const motivationalPhrases = [
       "Grandes negócios são construídos um pedido bem atendido de cada vez.",
@@ -731,18 +829,29 @@
     }
 
     function restartProgress(duration) {
-      motivationProgress.style.animation = "none";
-      void motivationProgress.offsetWidth;
-      motivationProgress.style.animation = `progress ${duration}ms linear`;
+      [motivationProgress, mobileMotivationProgress].forEach((bar) => {
+        if (!bar) return;
+        bar.style.animation = "none";
+        void bar.offsetWidth;
+        bar.style.animation = `progress ${duration}ms linear`;
+      });
     }
 
     function showNextPhrase() {
-      motivationText.classList.add("is-changing");
+      if (motivationText) motivationText.classList.add("is-changing");
+      if (mobileMotivationText) mobileMotivationText.classList.add("is-changing");
 
       setTimeout(() => {
         phraseIndex = (phraseIndex + 1) % motivationalPhrases.length;
-        motivationText.textContent = motivationalPhrases[phraseIndex];
-        motivationText.classList.remove("is-changing");
+        const nextPhrase = motivationalPhrases[phraseIndex];
+        if (motivationText) {
+          motivationText.textContent = nextPhrase;
+          motivationText.classList.remove("is-changing");
+        }
+        if (mobileMotivationText) {
+          mobileMotivationText.textContent = nextPhrase;
+          mobileMotivationText.classList.remove("is-changing");
+        }
 
         const nextDuration = randomInterval();
         restartProgress(nextDuration);
