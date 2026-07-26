@@ -7,15 +7,15 @@ const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_O3YGOBBNIIVAxIdPRlP59Q_6k0d64lu
 /*
   IMPORTANTE:
   O login e o dashboard usam o mesmo armazenamento padrão do Supabase.
-  Isso evita o ciclo index → dashboard → index que fazia as duas telas
+  Isso evita o ciclo index -> dashboard -> index que fazia as duas telas
   aparecerem alternadamente.
 
   CORREÇÃO:
-  A verificação inicial agora valida a sessão NO SERVIDOR (getUser)
-  antes de redirecionar. getSession() sozinho apenas lê o localStorage,
-  então qualquer sessão residual (expirada, revogada ou de logout que
-  falhou) mandava o usuário direto para o dashboard e criava o loop.
-  Sessão inválida agora é limpa localmente e a tela de login aparece.
+  A verificação inicial valida a sessão NO SERVIDOR (getUser) antes de
+  redirecionar. getSession() sozinho apenas lê o localStorage, então uma
+  sessão residual (expirada, revogada ou de logout que falhou) mandava o
+  usuário direto para o dashboard e criava o loop. Sessão inválida agora
+  é limpa localmente e a tela de login aparece.
 */
 
 let supabaseClient = null;
@@ -74,10 +74,7 @@ function setLoading(loading) {
   passwordInput.disabled = loading;
   rememberInput.disabled = loading;
   buttonText.textContent = loading ? "ENTRANDO..." : "ENTRAR";
-  loginButton.setAttribute(
-    "aria-busy",
-    loading ? "true" : "false"
-  );
+  loginButton.setAttribute("aria-busy", loading ? "true" : "false");
 }
 
 function showStatus(message, type = "error", duration = 4200) {
