@@ -92,34 +92,52 @@
     }
 
     .page {
-      width: min(1180px, 100%);
-      min-height: 650px;
+      width: min(1160px, 100%);
+      min-height: 610px;
       position: relative;
       z-index: 2;
       display: grid;
-      grid-template-columns: minmax(0,1.1fr) 450px;
+      grid-template-columns: minmax(0,1.18fr) 390px;
       align-items: center;
-      gap: 66px;
+      gap: 82px;
     }
 
     .presentation { max-width: 640px; padding: 24px 0; }
 
     .presentation-top {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 18px;
-      margin-bottom: 30px;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 26px;
+      text-align: center;
     }
 
     .presentation-logo {
-      width: 92px;
-      height: 62px;
+      width: 118px;
+      height: 82px;
       flex: 0 0 auto;
       object-fit: contain;
-      filter: drop-shadow(0 9px 18px rgba(0,0,0,.65)) drop-shadow(0 0 10px rgba(212,170,96,.12));
+      image-rendering: auto;
+      transform-origin: center;
+      filter:
+        drop-shadow(0 13px 24px rgba(0,0,0,.68))
+        drop-shadow(0 0 14px rgba(212,170,96,.18));
+      animation: logoFloat 4.2s ease-in-out infinite;
     }
 
-    .presentation-brand { display: flex; flex-direction: column; gap: 6px; }
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-9px) scale(1.025); }
+    }
+
+    .presentation-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
 
     .brand-line {
       display: inline-flex;
@@ -132,17 +150,25 @@
       text-transform: uppercase;
     }
 
-    .brand-line::before {
+    .brand-line::before,
+    .brand-line::after {
       content: "";
-      width: 34px;
+      width: 28px;
       height: 1px;
       background: linear-gradient(to right, transparent, var(--dourado));
+    }
+
+    .brand-line::after {
+      transform: scaleX(-1);
     }
 
     .brand-subline { color: rgba(255,255,255,.56); font-size: 12px; letter-spacing: .7px; }
 
     .presentation h2 {
       max-width: 610px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
       font-family: Georgia, "Times New Roman", serif;
       font-size: clamp(40px, 5vw, 68px);
       font-weight: 400;
@@ -155,14 +181,17 @@
 
     .presentation-text {
       max-width: 530px;
-      margin-top: 22px;
+      margin: 22px auto 0;
+      text-align: center;
       color: rgba(255,255,255,.74);
       font-size: 15px;
       line-height: 1.75;
     }
 
     .motivation-card {
-      max-width: 560px;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
       min-height: 128px;
       margin-top: 30px;
       padding: 22px 24px 20px 26px;
@@ -249,7 +278,13 @@
 
     @keyframes progress { from { width: 0; } to { width: 100%; } }
 
-    .quality-list { display: flex; flex-wrap: wrap; gap: 13px 23px; margin-top: 27px; }
+    .quality-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 13px 23px;
+      margin-top: 25px;
+    }
 
     .quality-item {
       display: flex;
@@ -271,11 +306,13 @@
 
     .login-card {
       width: 100%;
+      max-width: 390px;
+      justify-self: end;
       position: relative;
-      padding: 30px 38px 28px;
+      padding: 23px 28px 22px;
       overflow: hidden;
       border: 1px solid var(--borda);
-      border-radius: 25px;
+      border-radius: 22px;
       background: linear-gradient(145deg, rgba(22,22,22,.93), rgba(6,6,6,.88));
       box-shadow: 0 35px 100px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.07);
       backdrop-filter: blur(24px);
@@ -308,45 +345,52 @@
       position: relative;
       z-index: 1;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 15px;
-      margin-bottom: 24px;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      text-align: center;
     }
 
     .logo-wrapper {
-      width: 76px;
-      height: 58px;
-      flex: 0 0 76px;
+      width: 92px;
+      height: 70px;
+      flex: 0 0 auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(212,170,96,.16);
-      border-radius: 14px;
-      background: rgba(255,255,255,.035);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+      border: 0;
+      border-radius: 18px;
+      background: transparent;
+      box-shadow: none;
+      animation: logoFloat 4.2s ease-in-out infinite;
     }
 
     .logo {
       display: block;
-      width: 66px;
-      height: 48px;
+      width: 88px;
+      height: 64px;
       object-fit: contain;
-      filter: drop-shadow(0 8px 17px rgba(0,0,0,.62)) drop-shadow(0 0 8px rgba(255,255,255,.06));
+      image-rendering: auto;
+      filter:
+        drop-shadow(0 11px 20px rgba(0,0,0,.68))
+        drop-shadow(0 0 12px rgba(212,170,96,.16));
     }
 
-    .login-title { min-width: 0; }
+    .login-title { min-width: 0; text-align: center; }
 
     .login-title h1 {
       margin-bottom: 4px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 28px;
+      font-size: 25px;
       font-weight: 400;
       letter-spacing: .1px;
     }
 
     .subtitle { color: var(--cinza); font-size: 12px; line-height: 1.35; letter-spacing: .35px; }
 
-    .form-group { position: relative; z-index: 1; margin-bottom: 16px; }
+    .form-group { position: relative; z-index: 1; margin-bottom: 12px; }
 
     .form-group label {
       display: block;
@@ -372,7 +416,7 @@
 
     input {
       width: 100%;
-      height: 54px;
+      height: 48px;
       padding: 0 48px 0 47px;
       border: 1px solid rgba(255,255,255,.1);
       border-radius: 12px;
@@ -416,7 +460,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 15px;
-      margin: 4px 1px 22px;
+      margin: 3px 1px 16px;
     }
 
     .remember {
@@ -435,7 +479,7 @@
 
     .login-button {
       width: 100%;
-      height: 55px;
+      height: 49px;
       position: relative;
       z-index: 1;
       overflow: hidden;
@@ -483,7 +527,7 @@
       align-items: center;
       justify-content: center;
       gap: 7px;
-      margin-top: 17px;
+      margin-top: 13px;
       color: rgba(255,255,255,.38);
       font-size: 10px;
     }
@@ -491,8 +535,8 @@
     footer {
       position: relative;
       z-index: 1;
-      margin-top: 22px;
-      padding-top: 18px;
+      margin-top: 16px;
+      padding-top: 14px;
       border-top: 1px solid rgba(255,255,255,.07);
       color: rgba(255,255,255,.36);
       text-align: center;
@@ -518,13 +562,13 @@
         background-attachment: scroll;
       }
 
-      .login-card { margin: auto; padding: 24px 20px 23px; border-radius: 21px; }
-      .login-heading { gap: 12px; margin-bottom: 23px; }
-      .logo-wrapper { width: 68px; height: 54px; flex-basis: 68px; }
-      .logo { width: 59px; height: 44px; }
-      .login-title h1 { font-size: 24px; }
+      .login-card { margin: auto; max-width: 380px; padding: 20px 18px 19px; border-radius: 20px; }
+      .login-heading { gap: 7px; margin-bottom: 17px; }
+      .logo-wrapper { width: 84px; height: 64px; }
+      .logo { width: 80px; height: 58px; }
+      .login-title h1 { font-size: 23px; }
       .subtitle { font-size: 11px; }
-      input, .login-button { height: 52px; }
+      input, .login-button { height: 48px; }
       .form-options { align-items: flex-start; }
     }
 
@@ -546,8 +590,11 @@
   <main class="page">
     <section class="presentation" aria-label="Apresentação do sistema">
       <div class="presentation-top">
-        <img src="/assets/logo-dakkai.webp" class="presentation-logo" alt="Logo Dakkai Sushi" decoding="async"
-          onerror="this.onerror=null; this.src='/assets/icon-192.png';">
+        <picture>
+          <source srcset="/assets/logo-dakkai.svg" type="image/svg+xml">
+          <img src="/assets/logo-dakkai.webp" class="presentation-logo" alt="Logo Dakkai Sushi" decoding="async"
+            onerror="this.onerror=null; this.src='/assets/icon-192.png';">
+        </picture>
         <div class="presentation-brand">
           <div class="brand-line">Tradição, excelência e tecnologia</div>
           <div class="brand-subline">Gestão inteligente para restaurante e delivery</div>
@@ -584,9 +631,12 @@
     <section class="login-card">
       <div class="login-heading">
         <div class="logo-wrapper">
-          <img src="/assets/logo-dakkai.webp" class="logo" alt="Logo Dakkai Sushi" width="132" height="96"
-            decoding="async" fetchpriority="high"
-            onerror="this.onerror=null; this.src='/assets/icon-192.png';">
+          <picture>
+            <source srcset="/assets/logo-dakkai.svg" type="image/svg+xml">
+            <img src="/assets/logo-dakkai.webp" class="logo" alt="Logo Dakkai Sushi" width="176" height="128"
+              decoding="async" fetchpriority="high"
+              onerror="this.onerror=null; this.src='/assets/icon-192.png';">
+          </picture>
         </div>
 
         <div class="login-title">
