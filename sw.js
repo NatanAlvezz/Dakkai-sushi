@@ -1,4 +1,4 @@
-const CACHE = "dakkai-v5-acabamento";
+const CACHE = "dakkai-v6-fotos";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -13,12 +13,6 @@ const APP_SHELL = [
   "./assets/logo-dakkai.webp",
   "./assets/logo-dakkai.png",
   "./assets/favicon-64.png",
-  "./assets/dakkai-hero-oficial.webp",
-  "./assets/dakkai-hero-oficial-mobile.webp",
-  "./assets/dakkai-experiencia-oficial.webp",
-  "./assets/dakkai-experiencia-oficial-mobile.webp",
-  "./assets/dakkai-galeria-sushi-mar.webp",
-  "./assets/dakkai-galeria-prato-quente.webp",
   "./assets/icon-192.png",
   "./assets/icon-512.png"
 ];

@@ -1,7 +1,8 @@
 /* =========================================================
-   DAKKAI SUSHI — ACABAMENTO
-   Botão iFood, fundos oficiais, seção/página de cardápio
-   e assistente DAKKAI IA. Carregado depois de styles.css.
+   DAKKAI SUSHI — ACABAMENTO PREMIUM
+   Fundos com as fotos novas dos pratos, botão iFood,
+   cardápio visual com fotos e assistente DAKKAI IA.
+   Carregado depois de styles.css (sobrescreve os fundos antigos).
 ========================================================= */
 
 /* ---------- Botão iFood ---------- */
@@ -29,21 +30,46 @@
   box-shadow: 0 6px 18px rgba(234, 29, 44, 0.35);
 }
 
-/* ---------- Fundos com as fotos oficiais ---------- */
+/* =========================================================
+   FUNDOS NOVOS — fotos oficiais dos pratos
+   (substituem os fundos antigos do styles.css)
+========================================================= */
 
-.section.essence {
+/* Hero — linha de hot rolls, clima escuro e sofisticado */
+.hero .hero-media {
   background-image:
-    linear-gradient(rgba(7, 7, 7, 0.94), rgba(7, 7, 7, 0.97)),
-    url("assets/dakkai-galeria-sushi-mar.webp");
+    linear-gradient(rgba(7, 7, 7, 0.55), rgba(7, 7, 7, 0.82)),
+    url("assets/fotos/foto-05.jpg") !important;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
+/* Essência — sashimi de salmão na cerâmica, minimalista */
+.section.essence {
+  background-image:
+    linear-gradient(rgba(7, 7, 7, 0.93), rgba(7, 7, 7, 0.97)),
+    url("assets/fotos/foto-13.jpg") !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Experiência — joy maçaricado no prato escuro */
+.section.experience .experience-photo {
+  background-image:
+    linear-gradient(rgba(7, 7, 7, 0.35), rgba(7, 7, 7, 0.72)),
+    url("assets/fotos/foto-06.jpg") !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Contato — sashimi crispy, dramático */
 .section.contact {
   background-image:
-    linear-gradient(rgba(7, 7, 7, 0.92), rgba(7, 7, 7, 0.97)),
-    url("assets/dakkai-experiencia-oficial.webp");
+    linear-gradient(rgba(7, 7, 7, 0.9), rgba(7, 7, 7, 0.97)),
+    url("assets/fotos/foto-12.jpg") !important;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -57,6 +83,14 @@
 }
 
 /* ---------- Seção Cardápio (página inicial) ---------- */
+
+.menu-cta {
+  background-image:
+    linear-gradient(rgba(7, 7, 7, 0.9), rgba(7, 7, 7, 0.96)),
+    url("assets/fotos/foto-01.jpg");
+  background-size: cover;
+  background-position: center;
+}
 
 .menu-cta .menu-cta-buttons {
   display: flex;
@@ -89,12 +123,116 @@
   margin: 24px 0 36px;
 }
 
+/* Cardápio visual — cards com foto, estilo app */
+
+.menu-cat {
+  margin: 44px 0;
+}
+
+.menu-cat h2 {
+  font-family: "Noto Serif JP", serif;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 10px;
+  color: #ffffff;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.menu-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #101010;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(231, 201, 143, 0.35);
+}
+
+.menu-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  background: #0b0b0b;
+}
+
+.menu-card .menu-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 16px 16px;
+  flex: 1;
+}
+
+.menu-card strong {
+  color: #ffffff;
+  font-size: 0.98rem;
+  line-height: 1.3;
+}
+
+.menu-card small {
+  opacity: 0.72;
+  line-height: 1.45;
+}
+
+.menu-card .price {
+  margin-top: auto;
+  padding-top: 8px;
+  font-weight: 700;
+  color: #e7c98f;
+  white-space: nowrap;
+}
+
+/* Itens sem foto (ex.: bebidas) — linha simples */
+
+.menu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.menu-row strong {
+  display: block;
+  color: #ffffff;
+}
+
+.menu-row small {
+  opacity: 0.75;
+}
+
+.menu-row .price {
+  white-space: nowrap;
+  font-weight: 700;
+  color: #e7c98f;
+}
+
+.menu-obs {
+  opacity: 0.65;
+  font-size: 0.88rem;
+  margin-top: 30px;
+}
+
 .menu-embed {
   width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 18px;
   overflow: hidden;
   background: #0b0b0b;
+  margin-top: 40px;
 }
 
 .menu-embed iframe {
@@ -112,42 +250,6 @@
 }
 
 .menu-note a {
-  color: #e7c98f;
-}
-
-.menu-cat {
-  margin: 36px 0;
-}
-
-.menu-cat h2 {
-  font-family: "Noto Serif JP", serif;
-  letter-spacing: 0.06em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 10px;
-  color: #ffffff;
-}
-
-.menu-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 18px;
-  padding: 14px 0;
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
-}
-
-.menu-item strong {
-  display: block;
-  color: #ffffff;
-}
-
-.menu-item small {
-  opacity: 0.75;
-}
-
-.menu-item .price {
-  white-space: nowrap;
-  font-weight: 700;
   color: #e7c98f;
 }
 
