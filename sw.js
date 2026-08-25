@@ -1,10 +1,14 @@
-const CACHE = "dakkai-v4-organizado";
+const CACHE = "dakkai-v5-acabamento";
 const APP_SHELL = [
   "./",
   "./index.html",
+  "./cardapio.html",
   "./styles.css",
+  "./dakkai-extra.css",
   "./config.js",
   "./script.js",
+  "./menu.js",
+  "./assistant.js",
   "./manifest.webmanifest",
   "./assets/logo-dakkai.webp",
   "./assets/logo-dakkai.png",

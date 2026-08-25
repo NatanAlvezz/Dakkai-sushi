@@ -1,0 +1,329 @@
+/* =========================================================
+   DAKKAI SUSHI — ACABAMENTO
+   Botão iFood, fundos oficiais, seção/página de cardápio
+   e assistente DAKKAI IA. Carregado depois de styles.css.
+========================================================= */
+
+/* ---------- Botão iFood ---------- */
+
+.ifood-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ifood-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: #ea1d2c;
+  color: #ffffff;
+  font-weight: 800;
+  font-style: italic;
+  font-size: 0.88em;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  box-shadow: 0 6px 18px rgba(234, 29, 44, 0.35);
+}
+
+/* ---------- Fundos com as fotos oficiais ---------- */
+
+.section.essence {
+  background-image:
+    linear-gradient(rgba(7, 7, 7, 0.94), rgba(7, 7, 7, 0.97)),
+    url("assets/dakkai-galeria-sushi-mar.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.section.contact {
+  background-image:
+    linear-gradient(rgba(7, 7, 7, 0.92), rgba(7, 7, 7, 0.97)),
+    url("assets/dakkai-experiencia-oficial.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 901px) {
+  .section.essence,
+  .section.contact {
+    background-attachment: fixed;
+  }
+}
+
+/* ---------- Seção Cardápio (página inicial) ---------- */
+
+.menu-cta .menu-cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+/* ---------- Página do cardápio ---------- */
+
+.menu-page main {
+  padding: 120px 0 60px;
+}
+
+.menu-hero {
+  padding: 30px 0 8px;
+}
+
+.menu-hero h1 {
+  font-family: "Noto Serif JP", serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  margin: 0 0 12px;
+  color: #ffffff;
+}
+
+.menu-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 24px 0 36px;
+}
+
+.menu-embed {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0b0b0b;
+}
+
+.menu-embed iframe {
+  width: 100%;
+  height: 78vh;
+  border: 0;
+  display: block;
+  background: #0b0b0b;
+}
+
+.menu-note {
+  opacity: 0.7;
+  font-size: 0.9rem;
+  margin-top: 12px;
+}
+
+.menu-note a {
+  color: #e7c98f;
+}
+
+.menu-cat {
+  margin: 36px 0;
+}
+
+.menu-cat h2 {
+  font-family: "Noto Serif JP", serif;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 10px;
+  color: #ffffff;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.menu-item strong {
+  display: block;
+  color: #ffffff;
+}
+
+.menu-item small {
+  opacity: 0.75;
+}
+
+.menu-item .price {
+  white-space: nowrap;
+  font-weight: 700;
+  color: #e7c98f;
+}
+
+/* ---------- Assistente DAKKAI IA ---------- */
+
+.dk-ai-button {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(10, 10, 10, 0.92);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.dk-ai-button span {
+  color: #e7c98f;
+}
+
+.dk-ai-panel {
+  position: fixed;
+  left: 18px;
+  bottom: 84px;
+  z-index: 61;
+  width: min(360px, calc(100vw - 36px));
+  max-height: 70vh;
+  display: none;
+  flex-direction: column;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #0b0b0b;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.dk-ai-panel.open {
+  display: flex;
+}
+
+.dk-ai-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #151515, #0b0b0b);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dk-ai-head strong {
+  font-family: "Noto Serif JP", serif;
+  letter-spacing: 0.12em;
+  color: #ffffff;
+}
+
+.dk-ai-head button {
+  background: none;
+  border: 0;
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.dk-ai-body {
+  padding: 14px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 120px;
+}
+
+.dk-ai-msg {
+  max-width: 88%;
+  padding: 10px 13px;
+  border-radius: 14px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.dk-ai-msg.bot {
+  background: #161616;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: #eaeaea;
+  align-self: flex-start;
+}
+
+.dk-ai-msg.user {
+  background: #2a2118;
+  color: #f4e9d6;
+  align-self: flex-end;
+}
+
+.dk-ai-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dk-ai-actions a {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(231, 201, 143, 0.4);
+  color: #e7c98f;
+  font-size: 0.82rem;
+  text-decoration: none;
+}
+
+.dk-ai-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 0 14px 10px;
+}
+
+.dk-ai-chips button {
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #121212;
+  color: #dddddd;
+  font-size: 0.8rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.dk-ai-input {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dk-ai-input input {
+  flex: 1;
+  background: #121212;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: #ffffff;
+  padding: 11px 12px;
+  font-size: 0.92rem;
+  font-family: inherit;
+}
+
+.dk-ai-input button {
+  border: 0;
+  border-radius: 12px;
+  padding: 0 16px;
+  background: #e7c98f;
+  color: #111111;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .dk-ai-button {
+    left: 14px;
+    bottom: 14px;
+    padding: 11px 15px;
+  }
+
+  .dk-ai-panel {
+    left: 14px;
+    bottom: 76px;
+  }
+}
