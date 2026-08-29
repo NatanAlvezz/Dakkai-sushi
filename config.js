@@ -11,9 +11,13 @@ window.DAKKAI_CONFIG = {
   instagram: "https://www.instagram.com/dakkaisushi.sambaqui/",
   maps: "https://www.google.com/maps/search/?api=1&query=Dakkai+Sushi+Sambaqui+Florian%C3%B3polis",
 
-  // Delivery oficial (iFood)
-  ifood: "https://www.ifood.com.br/delivery/florianopolis-sc/dakkai-sushi-sambaqui/9f2690a2-587c-47a6-a446-c892b4b57178",
-  delivery: "https://www.ifood.com.br/delivery/florianopolis-sc/dakkai-sushi-sambaqui/9f2690a2-587c-47a6-a446-c892b4b57178",
+  /*
+    Pedidos: tudo pelo WhatsApp.
+    Deixando "delivery" vazio, qualquer botão de pedido
+    direciona automaticamente para o WhatsApp.
+  */
+  ifood: "",
+  delivery: "",
 
   // Cardápio digital (MenuDino) e página do site
   menudino: "https://dakkai.menudino.com",

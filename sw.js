@@ -1,4 +1,4 @@
-const CACHE = "dakkai-v6-fotos";
+const CACHE = "dakkai-v7-whatsapp";
 const APP_SHELL = [
   "./",
   "./index.html",
