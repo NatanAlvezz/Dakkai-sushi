@@ -4,6 +4,10 @@
   Itens e preços do cardápio oficial.
   As fotos ficam na pasta assets/ (com o nome do prato).
   Para mudar um preço, item ou foto, edite apenas este arquivo.
+
+  REGRA DAS FOTOS: cada item só recebe foto quando a imagem é
+  realmente daquele prato. Item sem foto aparece como linha de
+  texto — nunca use foto de outro prato.
 */
 
 window.DAKKAI_MENU = {
@@ -12,10 +16,10 @@ window.DAKKAI_MENU = {
       nome: "Combinados",
       itens: [
         { nome: "Combo Família", descricao: "10 Uramaki Salmão Filadélfia, 10 Uramaki Kani, 10 Uramaki Salmão Grelhado, 10 Hossomaki Salmão, 10 Hossomaki Pepino, 10 Hossomaki Kani, 20 Hot Filadélfia e 20 Hot Banana com Doce de Leite", preco: "R$ 119,90", foto: "assets/combo sambaqui.png" },
-        { nome: "Dakkai Minha Delícia — 22 peças", descricao: "5 Uramaki Salmão Filadélfia, 5 Uramaki Salmão Grelhado, 4 Hossomaki Salmão, 4 Niguiri Salmão, 4 Joy Salmão", preco: "R$ 49,90", foto: "assets/uramaki salmao.png" },
-        { nome: "Dakkai Chef — 50 peças", descricao: "10 Uramaki Salmão Filadélfia, 10 Ura Skin, 10 Hossomaki Salmão, 5 Niguiri Salmão, 5 Niguiri Skin, 10 Hot Filadélfia", preco: "R$ 98,00", foto: "assets/Niguiri Skin.png" },
-        { nome: "Dakkai Salmão — 46 peças", descricao: "8 Sashimi Salmão, 10 Uramaki Salmão Filadélfia, 10 Uramaki Salmão Grelhado, 10 Hossomaki Salmão, 4 Niguiri Salmão, 4 Joy", preco: "R$ 149,90", foto: "assets/sashimi salmao.png" },
-        { nome: "Trio Joy Especiais — 12 peças", descricao: "4 Joy Salmão Gorgonzola, 4 Joy Salmão Brie, 4 Joy Salmão Amêndoas", preco: "R$ 59,90", foto: "assets/joy gorgonzola.png" },
+        { nome: "Dakkai Minha Delícia — 22 peças", descricao: "5 Uramaki Salmão Filadélfia, 5 Uramaki Salmão Grelhado, 4 Hossomaki Salmão, 4 Niguiri Salmão, 4 Joy Salmão", preco: "R$ 49,90" },
+        { nome: "Dakkai Chef — 50 peças", descricao: "10 Uramaki Salmão Filadélfia, 10 Ura Skin, 10 Hossomaki Salmão, 5 Niguiri Salmão, 5 Niguiri Skin, 10 Hot Filadélfia", preco: "R$ 98,00" },
+        { nome: "Dakkai Salmão — 46 peças", descricao: "8 Sashimi Salmão, 10 Uramaki Salmão Filadélfia, 10 Uramaki Salmão Grelhado, 10 Hossomaki Salmão, 4 Niguiri Salmão, 4 Joy", preco: "R$ 149,90" },
+        { nome: "Trio Joy Especiais — 12 peças", descricao: "4 Joy Salmão Gorgonzola, 4 Joy Salmão Brie, 4 Joy Salmão Amêndoas", preco: "R$ 59,90" },
         { nome: "Combo Gourmet — 32 peças", descricao: "10 Uramaki Salmão Filadélfia Laminado e Trufado com raspa de limão, 10 Hossomaki Salmão, 4 Niguiri Salmão Queijo Brie, 4 Joy Salmão, 4 Sashimi Salmão com Salsa Trufada", preco: "R$ 169,90" }
       ]
     },
@@ -30,7 +34,7 @@ window.DAKKAI_MENU = {
     {
       nome: "Hot Roll",
       itens: [
-        { nome: "Hot Holl Salmão & Camarão — 10 un", descricao: "Empanado crocante com recheio de salmão e camarão", preco: "Consulte no WhatsApp", foto: "assets/joy salmao e camarao.png" },
+        { nome: "Hot Holl Salmão & Camarão — 10 un", descricao: "Empanado crocante com recheio de salmão e camarão", preco: "Consulte no WhatsApp" },
         { nome: "Hot Filadélfia", descricao: "Empanado crocante, salmão e cream cheese", preco: "Consulte no WhatsApp", foto: "assets/hot holl salmao.png" },
         { nome: "Hot Banana com Doce de Leite", descricao: "Hot doce empanado com banana e doce de leite", preco: "Consulte no WhatsApp", foto: "assets/hot holl banana com doce de leite.png" }
       ]
@@ -46,6 +50,7 @@ window.DAKKAI_MENU = {
       nome: "Niguiris",
       itens: [
         { nome: "Niguiri Salmão — 4 un", descricao: "Salmão e arroz japonês", preco: "R$ 26,90", foto: "assets/niguiri salmao.png" },
+        { nome: "Niguiri Skin — 4 un", descricao: "Skin de salmão crocante e arroz japonês", preco: "Consulte no WhatsApp", foto: "assets/Niguiri Skin.png" },
         { nome: "Niguiris Salmão Brie — 4 un", descricao: "Maçaricado com queijo brie e geleia de pimenta", preco: "R$ 39,90" }
       ]
     },
@@ -54,7 +59,7 @@ window.DAKKAI_MENU = {
       itens: [
         { nome: "Temaki Califórnia", descricao: "Cone de alga nori com shari, manga, pepino japonês e abacate, finalizado com raspa de limão (vegano)", preco: "R$ 29,90" },
         { nome: "Temaki Salmão Filadélfia", descricao: "Salmão, cream cheese e arroz japonês", preco: "R$ 44,90" },
-        { nome: "Temaki Salmão Spyce Alho-Poró", descricao: "Salmão com toque picante e alho-poró crocante", preco: "R$ 44,90", foto: "assets/hot holl salmao alho poro.png" },
+        { nome: "Temaki Salmão Spyce Alho-Poró", descricao: "Salmão com toque picante e alho-poró crocante", preco: "R$ 44,90" },
         { nome: "Temaki Salmão Sem Arroz", descricao: "Versão low carb, só salmão e recheio", preco: "R$ 49,90" }
       ]
     },
