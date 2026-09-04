@@ -1,431 +1,120 @@
-/* =========================================================
-   DAKKAI SUSHI — ACABAMENTO PREMIUM
-   Fundos com as fotos novas dos pratos, botão iFood,
-   cardápio visual com fotos e assistente DAKKAI IA.
-   Carregado depois de styles.css (sobrescreve os fundos antigos).
-========================================================= */
+/* Melhorias e complementos do DAKKAI Sushi */
 
-/* ---------- Botão iFood ---------- */
-
-.ifood-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.ifood-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 13px;
-  border-radius: 999px;
-  background: #ea1d2c;
-  color: #ffffff;
-  font-weight: 800;
-  font-style: italic;
-  font-size: 0.88em;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  text-transform: lowercase;
-  box-shadow: 0 6px 18px rgba(234, 29, 44, 0.35);
-}
-
-/* =========================================================
-   FUNDOS NOVOS — fotos oficiais dos pratos
-   (substituem os fundos antigos do styles.css)
-========================================================= */
-
-/* Hero — linha de hot rolls, clima escuro e sofisticado */
-.hero .hero-media {
-  background-image:
-    linear-gradient(rgba(7, 7, 7, 0.55), rgba(7, 7, 7, 0.82)),
-    url("assets/fotos/foto-05.jpg") !important;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* Essência — sashimi de salmão na cerâmica, minimalista */
-.section.essence {
-  background-image:
-    linear-gradient(rgba(7, 7, 7, 0.93), rgba(7, 7, 7, 0.97)),
-    url("assets/fotos/foto-13.jpg") !important;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* Experiência — joy maçaricado no prato escuro */
-.section.experience .experience-photo {
-  background-image:
-    linear-gradient(rgba(7, 7, 7, 0.35), rgba(7, 7, 7, 0.72)),
-    url("assets/fotos/foto-06.jpg") !important;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-/* Contato — sashimi crispy, dramático */
-.section.contact {
-  background-image:
-    linear-gradient(rgba(7, 7, 7, 0.9), rgba(7, 7, 7, 0.97)),
-    url("assets/fotos/foto-12.jpg") !important;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-@media (min-width: 901px) {
-  .section.essence,
-  .section.contact {
-    background-attachment: fixed;
-  }
-}
-
-/* ---------- Seção Cardápio (página inicial) ---------- */
-
-.menu-cta {
-  background-image:
-    linear-gradient(rgba(7, 7, 7, 0.9), rgba(7, 7, 7, 0.96)),
-    url("assets/fotos/foto-01.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
-.menu-cta .menu-cta-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 26px;
-}
-
-/* ---------- Página do cardápio ---------- */
-
-.menu-page main {
-  padding: 120px 0 60px;
-}
-
-.menu-hero {
-  padding: 30px 0 8px;
-}
-
-.menu-hero h1 {
-  font-family: "Noto Serif JP", serif;
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  margin: 0 0 12px;
-  color: #ffffff;
-}
-
-.menu-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin: 24px 0 36px;
-}
-
-/* Cardápio visual — cards com foto, estilo app */
-
-.menu-cat {
-  margin: 44px 0;
-}
-
-.menu-cat h2 {
-  font-family: "Noto Serif JP", serif;
-  letter-spacing: 0.06em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 10px;
-  color: #ffffff;
-}
-
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 18px;
-  margin-top: 18px;
-}
-
-.menu-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 18px;
-  overflow: hidden;
-  background: #101010;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  transition: transform 0.25s ease, border-color 0.25s ease;
-}
-
-.menu-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(231, 201, 143, 0.35);
-}
-
-.menu-card img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  display: block;
-  background: #0b0b0b;
-}
-
-.menu-card .menu-card-info {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 14px 16px 16px;
-  flex: 1;
-}
-
-.menu-card strong {
-  color: #ffffff;
-  font-size: 0.98rem;
-  line-height: 1.3;
-}
-
-.menu-card small {
-  opacity: 0.72;
-  line-height: 1.45;
-}
-
-.menu-card .price {
-  margin-top: auto;
-  padding-top: 8px;
-  font-weight: 700;
-  color: #e7c98f;
-  white-space: nowrap;
-}
-
-/* Itens sem foto (ex.: bebidas) — linha simples */
-
-.menu-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 18px;
-  padding: 14px 0;
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
-}
-
-.menu-row strong {
-  display: block;
-  color: #ffffff;
-}
-
-.menu-row small {
-  opacity: 0.75;
-}
-
-.menu-row .price {
-  white-space: nowrap;
-  font-weight: 700;
-  color: #e7c98f;
-}
-
-.menu-obs {
-  opacity: 0.65;
-  font-size: 0.88rem;
-  margin-top: 30px;
-}
-
-.menu-embed {
-  width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  overflow: hidden;
-  background: #0b0b0b;
-  margin-top: 40px;
-}
-
-.menu-embed iframe {
-  width: 100%;
-  height: 78vh;
-  border: 0;
-  display: block;
-  background: #0b0b0b;
-}
-
-.menu-note {
-  opacity: 0.7;
-  font-size: 0.9rem;
-  margin-top: 12px;
-}
-
-.menu-note a {
-  color: #e7c98f;
-}
-
-/* ---------- Assistente DAKKAI IA ---------- */
-
-.dk-ai-button {
-  position: fixed;
-  left: 18px;
-  bottom: 18px;
-  z-index: 60;
+/* Marca compacta compartilhada entre início e cardápio */
+.site-header .mini-brand.mini-brand-official {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 13px 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(10, 10, 10, 0.92);
-  color: #ffffff;
-  font-family: inherit;
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-}
-
-.dk-ai-button span {
-  color: #e7c98f;
-}
-
-.dk-ai-panel {
-  position: fixed;
-  left: 18px;
-  bottom: 84px;
-  z-index: 61;
-  width: min(360px, calc(100vw - 36px));
-  max-height: 70vh;
-  display: none;
-  flex-direction: column;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: #0b0b0b;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
-  overflow: hidden;
-}
-
-.dk-ai-panel.open {
-  display: flex;
-}
-
-.dk-ai-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px;
-  background: linear-gradient(135deg, #151515, #0b0b0b);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.dk-ai-head strong {
-  font-family: "Noto Serif JP", serif;
-  letter-spacing: 0.12em;
-  color: #ffffff;
-}
-
-.dk-ai-head button {
-  background: none;
-  border: 0;
-  color: #ffffff;
-  font-size: 20px;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.dk-ai-body {
-  padding: 14px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-height: 120px;
-}
-
-.dk-ai-msg {
-  max-width: 88%;
-  padding: 10px 13px;
-  border-radius: 14px;
-  font-size: 0.92rem;
-  line-height: 1.45;
-}
-
-.dk-ai-msg.bot {
-  background: #161616;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  color: #eaeaea;
-  align-self: flex-start;
-}
-
-.dk-ai-msg.user {
-  background: #2a2118;
-  color: #f4e9d6;
-  align-self: flex-end;
-}
-
-.dk-ai-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.dk-ai-actions a {
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(231, 201, 143, 0.4);
-  color: #e7c98f;
-  font-size: 0.82rem;
+  min-width: 0;
+  height: 48px;
+  color: #fff;
   text-decoration: none;
+  flex-shrink: 0;
+}
+.site-header .mini-brand-symbol {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  border-radius: 50%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.38));
+}
+.site-header .mini-brand-word {
+  font-family: "Noto Serif JP", serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: .17em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  text-shadow: 0 3px 12px rgba(0,0,0,.55);
 }
 
-.dk-ai-chips {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  padding: 0 14px 10px;
+/* Fundos apontando apenas para arquivos que existem no repositório */
+.hero .hero-media {
+  background-image: linear-gradient(rgba(7,7,7,.48), rgba(7,7,7,.82)), url("assets/combo%20sambaqui.png") !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-
-.dk-ai-chips button {
-  padding: 7px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: #121212;
-  color: #dddddd;
-  font-size: 0.8rem;
-  font-family: inherit;
-  cursor: pointer;
+.section.essence {
+  background-image: linear-gradient(rgba(7,7,7,.93), rgba(7,7,7,.97)), url("assets/sashimi%20salmao.png") !important;
+  background-size: cover;
+  background-position: center;
 }
-
-.dk-ai-input {
-  display: flex;
-  gap: 8px;
-  padding: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+.section.experience .experience-photo {
+  background-image: linear-gradient(rgba(7,7,7,.35), rgba(7,7,7,.72)), url("assets/joy%20salm%C3%A3o.png") !important;
+  background-size: cover;
+  background-position: center;
 }
-
-.dk-ai-input input {
-  flex: 1;
-  background: #121212;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  color: #ffffff;
-  padding: 11px 12px;
-  font-size: 0.92rem;
-  font-family: inherit;
+.section.contact {
+  background-image: linear-gradient(rgba(7,7,7,.9), rgba(7,7,7,.97)), url("assets/sashimi%20salmao%20crispy.png") !important;
+  background-size: cover;
+  background-position: center;
 }
-
-.dk-ai-input button {
-  border: 0;
-  border-radius: 12px;
-  padding: 0 16px;
-  background: #e7c98f;
-  color: #111111;
-  font-weight: 700;
-  font-family: inherit;
-  cursor: pointer;
+.menu-cta {
+  background-image: linear-gradient(rgba(7,7,7,.9), rgba(7,7,7,.96)), url("assets/uramaki%20salmao.png");
+  background-size: cover;
+  background-position: center;
 }
+.menu-cta .menu-cta-buttons { display:flex; flex-wrap:wrap; gap:14px; margin-top:26px; }
 
-@media (max-width: 600px) {
-  .dk-ai-button {
-    left: 14px;
-    bottom: 14px;
-    padding: 11px 15px;
-  }
+/* Cardápio */
+.menu-page main { padding:120px 0 60px; }
+.menu-hero { padding:30px 0 8px; }
+.menu-hero h1 { font-family:"Noto Serif JP",serif; font-size:clamp(2rem,5vw,3.2rem); margin:0 0 12px; color:#fff; }
+.menu-actions { display:flex; flex-wrap:wrap; gap:14px; margin:24px 0 36px; }
+.menu-cat { margin:44px 0; scroll-margin-top:100px; }
+.menu-cat h2 { font-family:"Noto Serif JP",serif; letter-spacing:.06em; border-bottom:1px solid rgba(255,255,255,.1); padding-bottom:10px; color:#fff; }
+.menu-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:18px; margin-top:18px; }
+.menu-card { display:flex; flex-direction:column; margin:0; border-radius:18px; overflow:hidden; background:#101010; border:1px solid rgba(255,255,255,.07); transition:transform .25s ease,border-color .25s ease; }
+.menu-card:hover { transform:translateY(-4px); border-color:rgba(231,201,143,.35); }
+.menu-card img { width:100%; aspect-ratio:1/1; object-fit:cover; background:#0b0b0b; }
+.menu-card .menu-card-info { display:flex; flex-direction:column; gap:6px; padding:14px 16px 16px; flex:1; }
+.menu-card strong { color:#fff; font-size:.98rem; line-height:1.3; }
+.menu-card small { opacity:.72; line-height:1.45; }
+.menu-card .price { margin-top:auto; padding-top:8px; font-weight:700; color:#e7c98f; white-space:nowrap; }
+.menu-row { display:flex; justify-content:space-between; align-items:baseline; gap:18px; padding:14px 0; border-bottom:1px dashed rgba(255,255,255,.08); }
+.menu-row strong { display:block; color:#fff; }
+.menu-row small { opacity:.75; }
+.menu-row .price { white-space:nowrap; font-weight:700; color:#e7c98f; }
+.menu-obs { opacity:.7; font-size:.88rem; margin-top:30px; }
+.menu-note { opacity:.75; font-size:.9rem; margin-top:12px; }
+.menu-note a { color:#e7c98f; text-decoration:underline; text-underline-offset:3px; }
 
-  .dk-ai-panel {
-    left: 14px;
-    bottom: 76px;
-  }
+/* Assistente virtual */
+.dk-ai-button { position:fixed; left:18px; bottom:18px; z-index:60; display:inline-flex; align-items:center; gap:10px; padding:13px 18px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background:rgba(10,10,10,.94); color:#fff; font:600 .9rem inherit; letter-spacing:.04em; cursor:pointer; backdrop-filter:blur(8px); box-shadow:0 10px 30px rgba(0,0,0,.45); }
+.dk-ai-button span { color:#e7c98f; }
+.dk-ai-panel { position:fixed; left:18px; bottom:84px; z-index:61; width:min(360px,calc(100vw - 36px)); max-height:min(70vh,620px); display:none; flex-direction:column; border-radius:18px; border:1px solid rgba(255,255,255,.12); background:#0b0b0b; box-shadow:0 24px 60px rgba(0,0,0,.6); overflow:hidden; }
+.dk-ai-panel.open { display:flex; }
+.dk-ai-head { display:flex; align-items:center; justify-content:space-between; padding:14px 16px; background:linear-gradient(135deg,#151515,#0b0b0b); border-bottom:1px solid rgba(255,255,255,.08); }
+.dk-ai-head strong { font-family:"Noto Serif JP",serif; letter-spacing:.12em; }
+.dk-ai-head button { width:40px; height:40px; border:0; background:none; color:#fff; font-size:22px; cursor:pointer; }
+.dk-ai-body { padding:14px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; min-height:120px; }
+.dk-ai-msg { max-width:88%; padding:10px 13px; border-radius:14px; font-size:.92rem; line-height:1.45; }
+.dk-ai-msg.bot { background:#161616; border:1px solid rgba(255,255,255,.07); color:#eaeaea; align-self:flex-start; }
+.dk-ai-msg.user { background:#2a2118; color:#f4e9d6; align-self:flex-end; }
+.dk-ai-actions,.dk-ai-chips { display:flex; flex-wrap:wrap; gap:8px; }
+.dk-ai-actions a { padding:8px 12px; border-radius:999px; border:1px solid rgba(231,201,143,.4); color:#e7c98f; font-size:.82rem; }
+.dk-ai-chips { padding:0 14px 10px; }
+.dk-ai-chips button { padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.14); background:#121212; color:#ddd; font:inherit; font-size:.8rem; cursor:pointer; }
+.dk-ai-input { display:flex; gap:8px; padding:12px; border-top:1px solid rgba(255,255,255,.08); }
+.dk-ai-input input { min-width:0; flex:1; background:#121212; border:1px solid rgba(255,255,255,.12); border-radius:12px; color:#fff; padding:11px 12px; font:inherit; font-size:.92rem; }
+.dk-ai-input button { border:0; border-radius:12px; padding:0 16px; background:#e7c98f; color:#111; font:700 .9rem inherit; cursor:pointer; }
+
+/* Acessibilidade e estados de foco */
+:where(a,button,input,select):focus-visible { outline:3px solid #e7c98f; outline-offset:3px; }
+@media (max-width:600px) {
+  .site-header .mini-brand.mini-brand-official { gap:8px; height:42px; }
+  .site-header .mini-brand-symbol { width:32px; height:32px; flex-basis:32px; }
+  .site-header .mini-brand-word { font-size:13px; letter-spacing:.13em; }
+  .menu-row { align-items:flex-start; }
+  .menu-row .price { max-width:40%; text-align:right; }
+  .dk-ai-button { left:14px; bottom:max(14px,env(safe-area-inset-bottom)); }
+  .dk-ai-panel { left:14px; bottom:76px; max-height:calc(100dvh - 100px); }
+}
+@media (max-width:380px) { .site-header .mini-brand-word { font-size:12px; letter-spacing:.1em; } }
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  *,*::before,*::after { animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
 }

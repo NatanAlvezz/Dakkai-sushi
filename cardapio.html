@@ -3,90 +3,60 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="Cardápio completo do DAKKAI Sushi — Sambaqui, Florianópolis. Especiais, combinados, temakis, hot rolls, sashimis e mais.">
+  <meta name="description" content="Cardápio do DAKKAI Sushi em Sambaqui, Florianópolis: combinados, temakis, hot rolls, sashimis e mais.">
   <meta name="theme-color" content="#070707">
   <meta name="color-scheme" content="dark">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://www.dakkaisushi.com.br/cardapio.html">
-  <title>Cardápio | DAKKAI Sushi — Sambaqui, Florianópolis</title>
-
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Cardápio | DAKKAI Sushi">
+  <meta property="og:description" content="Veja os pratos, fotos e preços do DAKKAI Sushi em Sambaqui.">
+  <meta property="og:url" content="https://www.dakkaisushi.com.br/cardapio.html">
+  <meta property="og:image" content="https://www.dakkaisushi.com.br/assets/combo%20sambaqui.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Cardápio | DAKKAI Sushi - Sambaqui, Florianópolis</title>
   <link rel="icon" href="assets/favicon-64.png" type="image/png" sizes="64x64">
   <link rel="apple-touch-icon" href="assets/icon-192.png">
-
+  <link rel="manifest" href="manifest.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Noto+Serif+JP:wght@500;600&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="dakkai-extra.css">
 </head>
-
 <body class="menu-page">
+  <a class="skip-link" href="#principal">Ir para o conteúdo</a>
   <div class="grain" aria-hidden="true"></div>
-
   <header class="site-header" id="inicio">
     <div class="container header-inner">
-      <a class="mini-brand mini-brand-official" href="index.html" aria-label="DAKKAI Sushi — voltar ao início">
+      <a class="mini-brand mini-brand-official" href="index.html" aria-label="DAKKAI Sushi - voltar ao início">
         <img class="mini-brand-symbol" src="assets/icon-192.png" alt="" width="192" height="192" decoding="async">
         <span class="mini-brand-word">DAKKAI</span>
       </a>
-
       <nav class="nav" aria-label="Navegação">
-        <a href="index.html">Início</a>
-        <a href="index.html#contato">Contato</a>
-        <a class="nav-cta" data-action="whatsapp" href="#">Pedir agora</a>
+        <a href="index.html">Início</a><a href="index.html#contato">Contato</a><a class="nav-cta" data-action="whatsapp" href="#">Pedir agora</a>
       </nav>
     </div>
   </header>
-
-  <main class="container">
-    <section class="menu-hero">
+  <main class="container" id="principal">
+    <section class="menu-hero" aria-labelledby="titulo-cardapio">
       <p class="kicker">Brasil • Oriente</p>
-      <h1>Cardápio DAKKAI</h1>
-      <p class="lead">
-        Especiais, combinados, temakis, hot rolls, hossomakis, uramakis,
-        niguiris, sashimis e teppanyaki — tudo feito no momento, em Sambaqui.
-      </p>
-
+      <h1 id="titulo-cardapio">Cardápio DAKKAI</h1>
+      <p class="lead">Especiais, combinados, temakis, hot rolls, hossomakis, uramakis, niguiris, sashimis e teppanyaki - tudo feito no momento, em Sambaqui.</p>
       <div class="menu-actions">
-        <a class="brush-button" data-action="whatsapp" href="#">
-          <span>Pedir no WhatsApp</span>
-          <b aria-hidden="true">↗</b>
-        </a>
-
-        <a class="brush-button" href="https://dakkai.menudino.com" target="_blank" rel="noopener noreferrer">
-          <span>Cardápio digital (pedido online)</span>
-          <b aria-hidden="true">↗</b>
-        </a>
+        <a class="brush-button" data-action="whatsapp" href="#"><span>Pedir no WhatsApp</span><b aria-hidden="true">↗</b></a>
+        <a class="brush-button" href="https://dakkai.menudino.com" target="_blank" rel="noopener noreferrer"><span>Cardápio digital</span><b aria-hidden="true">↗</b></a>
       </div>
     </section>
-
     <div id="menu-lista" aria-label="Cardápio do site"></div>
-
-    <section id="menu-embed">
-      <p class="menu-note">
-        Quer fazer o pedido online? Acesse nosso cardápio digital:
-        <a href="https://dakkai.menudino.com" target="_blank" rel="noopener noreferrer">dakkai.menudino.com</a>
-      </p>
+    <section id="menu-embed" aria-label="Pedido online">
+      <p class="menu-note">Quer fazer o pedido online? Acesse <a href="https://dakkai.menudino.com" target="_blank" rel="noopener noreferrer">o cardápio digital do DAKKAI</a>.</p>
     </section>
   </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> DAKKAI Sushi — Sambaqui, Florianópolis.</p>
-      <a href="index.html">← Voltar ao início</a>
-    </div>
-  </footer>
-
-  <a class="whatsapp-float" data-action="whatsapp" href="#" aria-label="Falar com o DAKKAI no WhatsApp">
-    <span class="pulse"></span>
-    WhatsApp
-  </a>
-
+  <footer class="footer"><div class="container footer-inner"><p>© <span id="year"></span> DAKKAI Sushi - Sambaqui, Florianópolis.</p><a href="index.html">← Voltar ao início</a></div></footer>
+  <a class="whatsapp-float" data-action="whatsapp" href="#" aria-label="Falar com o DAKKAI no WhatsApp"><span class="pulse"></span>WhatsApp</a>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <script src="config.js"></script>
-  <script src="script.js"></script>
-  <script src="menu.js"></script>
-  <script src="assistant.js"></script>
+  <script src="config.js"></script><script src="script.js"></script><script src="menu.js"></script><script src="assistant.js"></script>
 </body>
 </html>
